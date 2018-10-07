@@ -1,0 +1,18 @@
+<?xml version="1.0"?>
+<ruleset name="PHPCompatibilitySymfonyPolyfillPHP54">
+    <description>PHPCompatibility ruleset for PHP_CodeSniffer which accounts for polyfills provided by the Symfony PHP 5.4 library.</description>
+
+    <rule ref="PHPCompatibility">
+        <!-- https://github.com/symfony/polyfill-php54/blob/master/bootstrap.php -->
+        <exclude name="PHPCompatibility.FunctionUse.NewFunctions.trait_existsFound"/>
+        <exclude name="PHPCompatibility.FunctionUse.NewFunctions.class_usesFound"/>
+        <exclude name="PHPCompatibility.FunctionUse.NewFunctions.hex2binFound"/>
+        <exclude name="PHPCompatibility.FunctionUse.NewFunctions.session_register_shutdownFound"/>
+
+        <!-- https://github.com/symfony/polyfill-php54/tree/master/Resources/stubs -->
+        <exclude name="PHPCompatibility.Classes.NewClasses.callbackfilteriteratorFound"/>
+        <exclude name="PHPCompatibility.Classes.NewClasses.recursivecallbackfilteriteratorFound"/>
+        <exclude name="PHPCompatibility.Interfaces.NewInterfaces.sessionhandlerinterfaceFound"/>
+    </rule>
+
+</ruleset>

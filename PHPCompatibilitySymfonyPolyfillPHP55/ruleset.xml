@@ -1,0 +1,16 @@
+<?xml version="1.0"?>
+<ruleset name="PHPCompatibilitySymfonyPolyfillPHP55">
+    <description>PHPCompatibility ruleset for PHP_CodeSniffer which accounts for polyfills provided by the Symfony PHP 5.5 library.</description>
+
+    <!-- https://github.com/symfony/polyfill-php55/blob/master/composer.json -->
+    <rule ref="PHPCompatibilityPasswordCompat"/>
+
+    <rule ref="PHPCompatibility">
+        <!-- https://github.com/symfony/polyfill-php55/blob/master/bootstrap.php -->
+        <exclude name="PHPCompatibility.FunctionUse.NewFunctions.array_columnFound"/>
+        <exclude name="PHPCompatibility.FunctionUse.NewFunctions.boolvalFound"/>
+        <exclude name="PHPCompatibility.FunctionUse.NewFunctions.hash_pbkdf2Found"/>
+        <exclude name="PHPCompatibility.FunctionUse.NewFunctions.json_last_error_msgFound"/>
+    </rule>
+
+</ruleset>

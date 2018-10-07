@@ -1,0 +1,18 @@
+<?xml version="1.0"?>
+<ruleset name="PHPCompatibilitySymfonyPolyfillPHP72">
+    <description>PHPCompatibility ruleset for PHP_CodeSniffer which accounts for polyfills provided by the Symfony PHP 7.2 library.</description>
+
+    <rule ref="PHPCompatibility">
+        <!-- https://github.com/symfony/polyfill-php72/blob/master/bootstrap.php -->
+        <exclude name="PHPCompatibility.FunctionUse.NewFunctions.sapi_windows_vt100_supportFound"/>
+        <exclude name="PHPCompatibility.FunctionUse.NewFunctions.stream_isattyFound"/>
+        <exclude name="PHPCompatibility.FunctionUse.NewFunctions.utf8_encodeFound"/>
+        <exclude name="PHPCompatibility.FunctionUse.NewFunctions.utf8_decodeFound"/>
+        <exclude name="PHPCompatibility.FunctionUse.NewFunctions.spl_object_idFound"/>
+        <exclude name="PHPCompatibility.Constants.NewConstants.php_os_familyFound"/>
+        <exclude name="PHPCompatibility.FunctionUse.NewFunctions.mb_ordFound"/>
+        <exclude name="PHPCompatibility.FunctionUse.NewFunctions.mb_chrFound"/>
+        <exclude name="PHPCompatibility.FunctionUse.NewFunctions.mb_scrubFound"/>
+    </rule>
+
+</ruleset>

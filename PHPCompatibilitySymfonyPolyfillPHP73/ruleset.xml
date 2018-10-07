@@ -1,0 +1,13 @@
+<?xml version="1.0"?>
+<ruleset name="PHPCompatibilitySymfonyPolyfillPHP73">
+    <description>PHPCompatibility ruleset for PHP_CodeSniffer which accounts for polyfills provided by the Symfony PHP 7.3 library.</description>
+
+    <rule ref="PHPCompatibility">
+        <!-- https://github.com/symfony/polyfill-php73/blob/master/bootstrap.php -->
+        <exclude name="PHPCompatibility.FunctionUse.NewFunctions.array_key_firstFound"/>
+        <exclude name="PHPCompatibility.FunctionUse.NewFunctions.array_key_lastFound"/>
+        <exclude name="PHPCompatibility.FunctionUse.NewFunctions.hrtimeFound"/>
+        <exclude name="PHPCompatibility.FunctionUse.NewFunctions.is_countableFound"/>
+    </rule>
+
+</ruleset>

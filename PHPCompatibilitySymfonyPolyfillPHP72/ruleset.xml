@@ -15,4 +15,9 @@
         <exclude name="PHPCompatibility.FunctionUse.NewFunctions.mb_scrubFound"/>
     </rule>
 
+    <!-- Prevent false positives being thrown when run over the code of polyfill-php55 itself. -->
+    <rule ref="PHPCompatibility.Constants.NewConstants.debug_backtrace_ignore_argsFound">
+        <exclude-pattern>/polyfill-php72/Php72\.php$</exclude-pattern>
+    </rule>
+
 </ruleset>

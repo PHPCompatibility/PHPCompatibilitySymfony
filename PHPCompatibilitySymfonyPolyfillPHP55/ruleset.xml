@@ -13,4 +13,9 @@
         <exclude name="PHPCompatibility.FunctionUse.NewFunctions.json_last_error_msgFound"/>
     </rule>
 
+    <!-- Prevent false positives being thrown when run over the code of polyfill-php55 itself. -->
+    <rule ref="PHPCompatibility.Constants.NewConstants.json_error_utf8Found">
+        <exclude-pattern>/polyfill-php55/Php55\.php$</exclude-pattern>
+    </rule>
+
 </ruleset>

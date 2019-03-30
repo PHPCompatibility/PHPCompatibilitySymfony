@@ -23,10 +23,10 @@
     "phpcompatibility/phpcompatibility-passwordcompat" : "^1.0"
   },
   "require-dev" : {
-    "dealerdirect/phpcodesniffer-composer-installer": "^0.4.4"
+    "dealerdirect/phpcodesniffer-composer-installer": "^0.5"
   },
   "suggest" : {
-    "dealerdirect/phpcodesniffer-composer-installer": "^0.4.4 || This Composer plugin will sort out the PHP_CodeSniffer 'installed_paths' automatically.",
+    "dealerdirect/phpcodesniffer-composer-installer": "^0.5 || This Composer plugin will sort out the PHP_CodeSniffer 'installed_paths' automatically.",
     "roave/security-advisories": "dev-master || Helps prevent installing dependencies with known security issues."
   },
   "prefer-stable" : true

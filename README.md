@@ -117,6 +117,13 @@ All code within the PHPCompatibility organisation is released under the GNU Less
 
 ## Changelog
 
+### 1.1.0 - 2019-08-29
+
+* Added new `PHPCompatibilitySymfonyPolyfillPHP74` ruleset.
+* Updated the `PHPCompatibilitySymfonyPolyfillPHP73` ruleset to allow for the stub for the `JsonException` class which was added in `polyfill-php73` version `1.11.0`.
+* Composer: The recommended version of the [Composer PHPCS plugin](https://github.com/Dealerdirect/phpcodesniffer-composer-installer/) has been upped to `^0.5.0`.
+* CI: Added early warning system for false positives due to changes in the polyfill libraries themselves.
+
 ### 1.0.1 - 2018-12-16
 
 * Prevent false positives when the ruleset is run over the code of the polyfills themselves.

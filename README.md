@@ -23,6 +23,7 @@ Symfony Polyfill Library | Corresponding PHPCompatibility Ruleset | Includes
 [`polyfill-php71`](https://github.com/symfony/polyfill-php71) | `PHPCompatibilitySymfonyPolyfillPHP71` |
 [`polyfill-php72`](https://github.com/symfony/polyfill-php72) | `PHPCompatibilitySymfonyPolyfillPHP72` |
 [`polyfill-php73`](https://github.com/symfony/polyfill-php73) | `PHPCompatibilitySymfonyPolyfillPHP73` |
+[`polyfill-php74`](https://github.com/symfony/polyfill-php74) | `PHPCompatibilitySymfonyPolyfillPHP74` |
 
 > About "Includes":
 > Some polyfills have other polyfills as dependencies. If the PHPCompatibility project offers a dedicated ruleset for the polyfill dependency, that ruleset will be included in the ruleset for the higher level polyfill.
@@ -80,6 +81,7 @@ Now you can use the following commands to inspect the code in your project for P
 ./vendor/bin/phpcs -p . --standard=PHPCompatibilitySymfonyPolyfillPHP71
 ./vendor/bin/phpcs -p . --standard=PHPCompatibilitySymfonyPolyfillPHP72
 ./vendor/bin/phpcs -p . --standard=PHPCompatibilitySymfonyPolyfillPHP73
+./vendor/bin/phpcs -p . --standard=PHPCompatibilitySymfonyPolyfillPHP74
 
 # You can also combine the standards if your project uses several:
 ./vendor/bin/phpcs -p . --standard=PHPCompatibilitySymfonyPolyfillPHP55,PHPCompatibilitySymfonyPolyfillPHP70,PHPCompatibilitySymfonyPolyfillPHP73

@@ -42,6 +42,7 @@ script:
       diff -B ./PHPCompatibilitySymfonyPolyfillPHP71/ruleset.xml <(xmllint --format "./PHPCompatibilitySymfonyPolyfillPHP71/ruleset.xml")
       diff -B ./PHPCompatibilitySymfonyPolyfillPHP72/ruleset.xml <(xmllint --format "./PHPCompatibilitySymfonyPolyfillPHP72/ruleset.xml")
       diff -B ./PHPCompatibilitySymfonyPolyfillPHP73/ruleset.xml <(xmllint --format "./PHPCompatibilitySymfonyPolyfillPHP73/ruleset.xml")
+      diff -B ./PHPCompatibilitySymfonyPolyfillPHP74/ruleset.xml <(xmllint --format "./PHPCompatibilitySymfonyPolyfillPHP74/ruleset.xml")
     fi
 
   # Test the rulesets.
@@ -52,6 +53,7 @@ script:
   - vendor/bin/phpcs ./Test/SymfonyPolyfillPHP71Test.php --standard=PHPCompatibilitySymfonyPolyfillPHP71 --runtime-set testVersion 5.3-
   - vendor/bin/phpcs ./Test/SymfonyPolyfillPHP72Test.php --standard=PHPCompatibilitySymfonyPolyfillPHP72 --runtime-set testVersion 5.3-
   - vendor/bin/phpcs ./Test/SymfonyPolyfillPHP73Test.php --standard=PHPCompatibilitySymfonyPolyfillPHP73 --runtime-set testVersion 5.3-
+  - vendor/bin/phpcs ./Test/SymfonyPolyfillPHP74Test.php --standard=PHPCompatibilitySymfonyPolyfillPHP74 --runtime-set testVersion 5.3-
 
   # Check that the ruleset does not throw unnecessary errors for the compat library itself.
   - vendor/bin/phpcs ./vendor/symfony/polyfill-php54/ --standard=PHPCompatibilitySymfonyPolyfillPHP54 --runtime-set testVersion 5.3-
@@ -61,6 +63,7 @@ script:
   - vendor/bin/phpcs ./vendor/symfony/polyfill-php71/ --standard=PHPCompatibilitySymfonyPolyfillPHP71 --runtime-set testVersion 5.3-
   - vendor/bin/phpcs ./vendor/symfony/polyfill-php72/ --standard=PHPCompatibilitySymfonyPolyfillPHP72 --runtime-set testVersion 5.3-
   - vendor/bin/phpcs ./vendor/symfony/polyfill-php73/ --standard=PHPCompatibilitySymfonyPolyfillPHP73 --runtime-set testVersion 5.3-
+  - vendor/bin/phpcs ./vendor/symfony/polyfill-php74/ --standard=PHPCompatibilitySymfonyPolyfillPHP74 --runtime-set testVersion 5.3-
 
   # Validate the composer.json file.
   # @link https://getcomposer.org/doc/03-cli.md#validate

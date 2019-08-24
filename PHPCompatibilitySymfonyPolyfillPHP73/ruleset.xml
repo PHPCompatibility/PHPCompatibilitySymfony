@@ -8,6 +8,7 @@
         <exclude name="PHPCompatibility.FunctionUse.NewFunctions.array_key_lastFound"/>
         <exclude name="PHPCompatibility.FunctionUse.NewFunctions.hrtimeFound"/>
         <exclude name="PHPCompatibility.FunctionUse.NewFunctions.is_countableFound"/>
+        <exclude name="PHPCompatibility.Classes.NewClasses.jsonexceptionFound"/>
     </rule>
 
 </ruleset>

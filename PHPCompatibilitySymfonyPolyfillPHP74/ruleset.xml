@@ -1,0 +1,23 @@
+<?xml version="1.0"?>
+<ruleset name="PHPCompatibilitySymfonyPolyfillPHP74">
+    <description>PHPCompatibility ruleset for PHP_CodeSniffer which accounts for polyfills provided by the Symfony PHP 7.4 library.</description>
+
+    <rule ref="PHPCompatibility">
+        <!-- https://github.com/symfony/polyfill-php74/blob/master/bootstrap.php -->
+        <exclude name="PHPCompatibility.FunctionUse.NewFunctions.get_mangled_object_varsFound"/>
+        <exclude name="PHPCompatibility.FunctionUse.NewFunctions.mb_str_splitFound"/>
+        <exclude name="PHPCompatibility.FunctionUse.NewFunctions.password_algosFound"/>
+    </rule>
+
+    <!-- Prevent false positives being thrown when run over the code of polyfill-php74 itself. -->
+    <rule ref="PHPCompatibility.Constants.NewConstants.password_bcryptFound">
+        <exclude-pattern>/polyfill[_-]php74/Php74\.php$</exclude-pattern>
+    </rule>
+    <rule ref="PHPCompatibility.Constants.NewConstants.password_argon2iFound">
+        <exclude-pattern>/polyfill[_-]php74/Php74\.php$</exclude-pattern>
+    </rule>
+    <rule ref="PHPCompatibility.Constants.NewConstants.password_argon2idFound">
+        <exclude-pattern>/polyfill[_-]php74/Php74\.php$</exclude-pattern>
+    </rule>
+
+</ruleset>

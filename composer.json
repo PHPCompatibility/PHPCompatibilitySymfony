@@ -30,7 +30,8 @@
     "symfony/polyfill-php70": "dev-master",
     "symfony/polyfill-php71": "dev-master",
     "symfony/polyfill-php72": "dev-master",
-    "symfony/polyfill-php73": "dev-master"
+    "symfony/polyfill-php73": "dev-master",
+    "symfony/polyfill-php74": "dev-master"
   },
   "suggest" : {
     "dealerdirect/phpcodesniffer-composer-installer": "^0.5 || This Composer plugin will sort out the PHP_CodeSniffer 'installed_paths' automatically.",

@@ -19,5 +19,8 @@
     <rule ref="PHPCompatibility.Constants.NewConstants.debug_backtrace_ignore_argsFound">
         <exclude-pattern>/polyfill-php72/Php72\.php$</exclude-pattern>
     </rule>
+    <rule ref="PHPCompatibility.ParameterValues.NewIconvMbstringCharsetDefault.NotSet">
+        <exclude-pattern>/polyfill-php72/Php72\.php$</exclude-pattern>
+    </rule>
 
 </ruleset>

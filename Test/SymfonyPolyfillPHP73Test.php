@@ -5,3 +5,5 @@
 if ( is_countable( $abc ) ) {
 	$a = hrtime() ? array_key_first() : array_key_last();
 }
+
+class MyException extends JsonException {}

@@ -117,6 +117,11 @@ All code within the PHPCompatibility organisation is released under the GNU Less
 
 ## Changelog
 
+### 1.1.1 - 2019-08-30
+
+* `PHPCompatibilitySymfonyPolyfillPHP72` ruleset: minor tweak to prevent false positive when the sniffs are run over the polyfill itself.
+* Minor bug fix in the integration test for the `PHPCompatibilitySymfonyPolyfillPHP72` ruleset.
+
 ### 1.1.0 - 2019-08-29
 
 * Added new `PHPCompatibilitySymfonyPolyfillPHP74` ruleset.

@@ -6,6 +6,8 @@
         <!-- https://github.com/symfony/polyfill-php56/blob/master/bootstrap.php -->
         <exclude name="PHPCompatibility.FunctionUse.NewFunctions.hash_equalsFound"/>
         <exclude name="PHPCompatibility.FunctionUse.NewFunctions.ldap_escapeFound"/>
+        <exclude name="PHPCompatibility.Constants.NewConstants.ldap_escape_filterFound"/>
+        <exclude name="PHPCompatibility.Constants.NewConstants.ldap_escape_dnFound"/>
     </rule>
 
 </ruleset>

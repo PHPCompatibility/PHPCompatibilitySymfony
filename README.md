@@ -117,7 +117,8 @@ All code within the PHPCompatibility organisation is released under the GNU Less
 
 ## Changelog
 
-### Unreleased
+### 1.1.2 - 2020-05-20
+
 * `PHPCompatibilitySymfonyPolyfillPHP56` ruleset: allow for two polyfilled LDAP constants (undocumented in the Polyfill docs)
 * Composer: The recommended version of the [Composer PHPCS plugin](https://github.com/Dealerdirect/phpcodesniffer-composer-installer/) has been upped to `^0.6.0`.
 

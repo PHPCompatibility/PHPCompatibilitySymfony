@@ -4,3 +4,5 @@
  */
 $a = hash_equals();
 $a = ldap_escape();
+
+$var = LDAP_ESCAPE_FILTER + LDAP_ESCAPE_DN;

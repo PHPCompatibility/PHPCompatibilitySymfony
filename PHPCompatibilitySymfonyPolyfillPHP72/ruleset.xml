@@ -4,12 +4,16 @@
 
     <rule ref="PHPCompatibility">
         <!-- https://github.com/symfony/polyfill-php72/blob/master/bootstrap.php -->
+        <exclude name="PHPCompatibility.Constants.NewConstants.php_float_digFound"/>
+        <exclude name="PHPCompatibility.Constants.NewConstants.php_float_epsilonFound"/>
+        <exclude name="PHPCompatibility.Constants.NewConstants.php_float_minFound"/>
+        <exclude name="PHPCompatibility.Constants.NewConstants.php_float_maxFound"/>
+        <exclude name="PHPCompatibility.Constants.NewConstants.php_os_familyFound"/>
         <exclude name="PHPCompatibility.FunctionUse.NewFunctions.sapi_windows_vt100_supportFound"/>
         <exclude name="PHPCompatibility.FunctionUse.NewFunctions.stream_isattyFound"/>
         <exclude name="PHPCompatibility.FunctionUse.NewFunctions.utf8_encodeFound"/>
         <exclude name="PHPCompatibility.FunctionUse.NewFunctions.utf8_decodeFound"/>
         <exclude name="PHPCompatibility.FunctionUse.NewFunctions.spl_object_idFound"/>
-        <exclude name="PHPCompatibility.Constants.NewConstants.php_os_familyFound"/>
         <exclude name="PHPCompatibility.FunctionUse.NewFunctions.mb_ordFound"/>
         <exclude name="PHPCompatibility.FunctionUse.NewFunctions.mb_chrFound"/>
         <exclude name="PHPCompatibility.FunctionUse.NewFunctions.mb_scrubFound"/>

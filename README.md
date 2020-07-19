@@ -117,6 +117,10 @@ All code within the PHPCompatibility organisation is released under the GNU Less
 
 ## Changelog
 
+### 1.1.3 - 2020-07-19
+
+* `PHPCompatibilitySymfonyPolyfillPHP72` ruleset: allow for four polyfilled `PHP_FLOAT_*` constants, which were added in `polyfill-php72` version `1.16.0`.
+
 ### 1.1.2 - 2020-05-20
 
 * `PHPCompatibilitySymfonyPolyfillPHP56` ruleset: allow for two polyfilled LDAP constants (undocumented in the Polyfill docs)

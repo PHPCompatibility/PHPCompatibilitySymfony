@@ -17,10 +17,19 @@ matrix:
         apt:
           packages:
             - libxml2-utils
+      install:
+        - composer install
+
     - php: 5.4
+      install:
+        - composer require --no-update symfony/polyfill-php72:"1.19" symfony/polyfill-php73:"1.19" symfony/polyfill-php74:"1.19"
+        - composer install
 
     - php: 7.4
       env: PHPCOMPAT="dev-develop as 9.99.99"
+      install:
+        - composer config minimum-stability dev
+        - composer require --no-update phpcompatibility/php-compatibility:"${PHPCOMPAT}"
 
   allow_failures:
     # Allow failures for unstable builds.
@@ -30,12 +39,8 @@ before_install:
   # Speed up build time by disabling Xdebug when its not needed.
   - phpenv config-rm xdebug.ini || echo 'No xdebug config.'
   - export XMLLINT_INDENT="    "
-  - |
-    if [[ $PHPCOMPAT ]]; then
-      composer config minimum-stability dev
-      composer require --no-update phpcompatibility/php-compatibility:"${PHPCOMPAT}"
-    fi
-  - composer install
+
+before_script:
   - vendor/bin/phpcs -i
 
 script:

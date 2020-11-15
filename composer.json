@@ -23,18 +23,18 @@
     "phpcompatibility/phpcompatibility-passwordcompat" : "^1.0"
   },
   "require-dev" : {
-    "dealerdirect/phpcodesniffer-composer-installer": "^0.6",
-    "symfony/polyfill-php54": "dev-master",
-    "symfony/polyfill-php55": "dev-master",
-    "symfony/polyfill-php56": "dev-master",
-    "symfony/polyfill-php70": "dev-master",
-    "symfony/polyfill-php71": "dev-master",
-    "symfony/polyfill-php72": "dev-master",
-    "symfony/polyfill-php73": "dev-master",
-    "symfony/polyfill-php74": "dev-master"
+    "dealerdirect/phpcodesniffer-composer-installer": "^0.7",
+    "symfony/polyfill-php54": "1.19",
+    "symfony/polyfill-php55": "1.19",
+    "symfony/polyfill-php56": "1.19",
+    "symfony/polyfill-php70": "1.19",
+    "symfony/polyfill-php71": "1.19",
+    "symfony/polyfill-php72": "dev-main",
+    "symfony/polyfill-php73": "dev-main",
+    "symfony/polyfill-php74": "dev-main"
   },
   "suggest" : {
-    "dealerdirect/phpcodesniffer-composer-installer": "^0.6 || This Composer plugin will sort out the PHP_CodeSniffer 'installed_paths' automatically.",
+    "dealerdirect/phpcodesniffer-composer-installer": "^0.7 || This Composer plugin will sort out the PHP_CodeSniffer 'installed_paths' automatically.",
     "roave/security-advisories": "dev-master || Helps prevent installing dependencies with known security issues."
   },
   "prefer-stable" : true

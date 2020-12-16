@@ -1,7 +1,7 @@
 [![Latest Stable Version](https://poser.pugx.org/phpcompatibility/phpcompatibility-symfony/v/stable.png)](https://packagist.org/packages/phpcompatibility/phpcompatibility-symfony)
 [![Latest Unstable Version](https://poser.pugx.org/phpcompatibility/phpcompatibility-symfony/v/unstable.png)](https://packagist.org/packages/phpcompatibility/phpcompatibility-symfony)
 [![License](https://poser.pugx.org/phpcompatibility/phpcompatibility-symfony/license.png)](https://github.com/PHPCompatibility/PHPCompatibilitySymfony/blob/master/LICENSE)
-[![Build Status](https://travis-ci.org/PHPCompatibility/PHPCompatibilitySymfony.svg?branch=master)](https://travis-ci.org/PHPCompatibility/PHPCompatibilitySymfony)
+[![Build Status](https://github.com/PHPCompatibility/PHPCompatibilitySymfony/workflows/CI/badge.svg?branch=master)](https://github.com/PHPCompatibility/PHPCompatibilitySymfony/actions)
 
 # PHPCompatibilitySymfony
 

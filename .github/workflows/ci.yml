@@ -1,0 +1,128 @@
+name: CI
+
+on:
+  # Run on pushes to `master` and on all pull requests.
+  push:
+    branches:
+      - master
+  pull_request:
+  # Also run this workflow on day 15 of every month as the repo isn't that active.
+  schedule:
+    - cron: '0 0 15 * *'
+
+jobs:
+  xmllint:
+    name: 'Check XML'
+    runs-on: ubuntu-latest
+
+    env:
+      XMLLINT_INDENT: '    '
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Install PHP
+        uses: shivammathur/setup-php@v2
+        with:
+          php-version: '7.4'
+          coverage: none
+
+      # Install dependencies to make sure the PHPCS XSD file is available.
+      - name: Install dependencies
+        run: composer install --no-dev --no-interaction --no-progress
+
+      - name: Setup xmllint
+        run: sudo apt-get install --no-install-recommends -y libxml2-utils
+
+      # Show violations inline in the file diff.
+      # @link https://github.com/marketplace/actions/xmllint-problem-matcher
+      - uses: korelstar/xmllint-problem-matcher@v1
+
+      # Validate the xml file.
+      # @link http://xmlsoft.org/xmllint.html
+      - name: Validate against schema
+        run: xmllint --noout --schema vendor/squizlabs/php_codesniffer/phpcs.xsd ./*/ruleset.xml
+
+      # Check the code-style consistency of the xml file.
+      - name: Check code style
+        run: |
+          diff -B ./PHPCompatibilitySymfonyPolyfillPHP54/ruleset.xml <(xmllint --format "./PHPCompatibilitySymfonyPolyfillPHP54/ruleset.xml")
+          diff -B ./PHPCompatibilitySymfonyPolyfillPHP55/ruleset.xml <(xmllint --format "./PHPCompatibilitySymfonyPolyfillPHP55/ruleset.xml")
+          diff -B ./PHPCompatibilitySymfonyPolyfillPHP56/ruleset.xml <(xmllint --format "./PHPCompatibilitySymfonyPolyfillPHP56/ruleset.xml")
+          diff -B ./PHPCompatibilitySymfonyPolyfillPHP70/ruleset.xml <(xmllint --format "./PHPCompatibilitySymfonyPolyfillPHP70/ruleset.xml")
+          diff -B ./PHPCompatibilitySymfonyPolyfillPHP71/ruleset.xml <(xmllint --format "./PHPCompatibilitySymfonyPolyfillPHP71/ruleset.xml")
+          diff -B ./PHPCompatibilitySymfonyPolyfillPHP72/ruleset.xml <(xmllint --format "./PHPCompatibilitySymfonyPolyfillPHP72/ruleset.xml")
+          diff -B ./PHPCompatibilitySymfonyPolyfillPHP73/ruleset.xml <(xmllint --format "./PHPCompatibilitySymfonyPolyfillPHP73/ruleset.xml")
+          diff -B ./PHPCompatibilitySymfonyPolyfillPHP74/ruleset.xml <(xmllint --format "./PHPCompatibilitySymfonyPolyfillPHP74/ruleset.xml")
+
+  test:
+    needs: xmllint
+    runs-on: ubuntu-latest
+
+    strategy:
+      matrix:
+        php: ['5.4', 'latest']
+        phpcompat: ['stable']
+        experimental: [false]
+
+        include:
+          - php: '7.4'
+            phpcompat: 'dev-develop as 9.99.99'
+            experimental: true
+
+    name: "Test: PHP ${{ matrix.php }} - PHPCompat ${{ matrix.phpcompat }}"
+    continue-on-error: ${{ matrix.experimental }}
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Install PHP
+        uses: shivammathur/setup-php@v2
+        with:
+          php-version: ${{ matrix.php }}
+          coverage: none
+
+      - name: Conditionally require specific versions of the polyfills
+        if: ${{ matrix.php == '5.4' }}
+        run: |
+          composer require --no-update symfony/polyfill-php72:"1.19" symfony/polyfill-php73:"1.19" symfony/polyfill-php74:"1.19"
+
+      - name: Conditionally update PHPCompatibility to develop version
+        if: ${{ matrix.phpcompat != 'stable' }}
+        run: |
+          composer config minimum-stability dev
+          composer require --no-update phpcompatibility/php-compatibility:"${{ matrix.phpcompat }}"
+
+      - name: Install dependencies
+        run: composer install --no-interaction --no-progress
+
+      # Validate the composer.json file.
+      # @link https://getcomposer.org/doc/03-cli.md#validate
+      - name: Validate Composer installation
+        run: composer validate --no-check-all --strict
+
+      # Make sure that known polyfills don't trigger any errors.
+      - name: Test the rulesets
+        run: |
+          vendor/bin/phpcs -ps ./Test/SymfonyPolyfillPHP54Test.php --standard=PHPCompatibilitySymfonyPolyfillPHP54 --runtime-set testVersion 5.3-
+          vendor/bin/phpcs -ps ./Test/SymfonyPolyfillPHP55Test.php --standard=PHPCompatibilitySymfonyPolyfillPHP55 --runtime-set testVersion 5.3-
+          vendor/bin/phpcs -ps ./Test/SymfonyPolyfillPHP56Test.php --standard=PHPCompatibilitySymfonyPolyfillPHP56 --runtime-set testVersion 5.3-
+          vendor/bin/phpcs -ps ./Test/SymfonyPolyfillPHP70Test.php --standard=PHPCompatibilitySymfonyPolyfillPHP70 --runtime-set testVersion 5.3-
+          vendor/bin/phpcs -ps ./Test/SymfonyPolyfillPHP71Test.php --standard=PHPCompatibilitySymfonyPolyfillPHP71 --runtime-set testVersion 5.3-
+          vendor/bin/phpcs -ps ./Test/SymfonyPolyfillPHP72Test.php --standard=PHPCompatibilitySymfonyPolyfillPHP72 --runtime-set testVersion 5.3-
+          vendor/bin/phpcs -ps ./Test/SymfonyPolyfillPHP73Test.php --standard=PHPCompatibilitySymfonyPolyfillPHP73 --runtime-set testVersion 5.3-
+          vendor/bin/phpcs -ps ./Test/SymfonyPolyfillPHP74Test.php --standard=PHPCompatibilitySymfonyPolyfillPHP74 --runtime-set testVersion 5.3-
+
+      # Check that the rulesets don't throw unnecessary errors for the compat libraries themselves.
+      - name: Test running against the polyfills
+        run: |
+          vendor/bin/phpcs -ps ./vendor/symfony/polyfill-php54/ --standard=PHPCompatibilitySymfonyPolyfillPHP54 --runtime-set testVersion 5.3-
+          vendor/bin/phpcs -ps ./vendor/symfony/polyfill-php55/ --standard=PHPCompatibilitySymfonyPolyfillPHP55 --runtime-set testVersion 5.3-
+          vendor/bin/phpcs -ps ./vendor/symfony/polyfill-php56/ ./vendor/symfony/polyfill-util/ --standard=PHPCompatibilitySymfonyPolyfillPHP56 --runtime-set testVersion 5.3- --ignore=*/polyfill-util/TestListener*
+          vendor/bin/phpcs -ps ./vendor/symfony/polyfill-php70/ --standard=PHPCompatibilitySymfonyPolyfillPHP70 --runtime-set testVersion 5.3-
+          vendor/bin/phpcs -ps ./vendor/symfony/polyfill-php71/ --standard=PHPCompatibilitySymfonyPolyfillPHP71 --runtime-set testVersion 5.3-
+          vendor/bin/phpcs -ps ./vendor/symfony/polyfill-php72/ --standard=PHPCompatibilitySymfonyPolyfillPHP72 --runtime-set testVersion 5.3-
+          vendor/bin/phpcs -ps ./vendor/symfony/polyfill-php73/ --standard=PHPCompatibilitySymfonyPolyfillPHP73 --runtime-set testVersion 5.3-
+          vendor/bin/phpcs -ps ./vendor/symfony/polyfill-php74/ --standard=PHPCompatibilitySymfonyPolyfillPHP74 --runtime-set testVersion 5.3-

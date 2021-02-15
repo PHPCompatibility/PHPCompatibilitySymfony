@@ -119,6 +119,14 @@ All code within the PHPCompatibility organisation is released under the GNU Less
 
 ## Changelog
 
+### 1.2.0 - 2021-02-16
+
+* Added new `PHPCompatibilitySymfonyPolyfillPHP80` ruleset.
+* The recommended version of the [Composer PHPCS plugin] is now `^0.7.0`, which offers compatibility with Composer 2.0.
+* The ruleset is now also tested against PHP 7.4 and 8.0.
+    Note: full PHP 7.4 support is only available in combination with PHP_CodeSniffer >= 3.5.6.
+    Note: runtime PHP 8.0 support is only available in combination with PHP_CodeSniffer >= 3.5.7, full support is expected in PHP_CodeSniffer 3.6.0.
+
 ### 1.1.3 - 2020-07-19
 
 * `PHPCompatibilitySymfonyPolyfillPHP72` ruleset: allow for four polyfilled `PHP_FLOAT_*` constants, which were added in `polyfill-php72` version `1.16.0`.
@@ -126,7 +134,7 @@ All code within the PHPCompatibility organisation is released under the GNU Less
 ### 1.1.2 - 2020-05-20
 
 * `PHPCompatibilitySymfonyPolyfillPHP56` ruleset: allow for two polyfilled LDAP constants (undocumented in the Polyfill docs)
-* Composer: The recommended version of the [Composer PHPCS plugin](https://github.com/Dealerdirect/phpcodesniffer-composer-installer/) has been upped to `^0.6.0`.
+* Composer: The recommended version of the [Composer PHPCS plugin] has been upped to `^0.6.0`.
 
 ### 1.1.1 - 2019-08-30
 
@@ -137,7 +145,7 @@ All code within the PHPCompatibility organisation is released under the GNU Less
 
 * Added new `PHPCompatibilitySymfonyPolyfillPHP74` ruleset.
 * Updated the `PHPCompatibilitySymfonyPolyfillPHP73` ruleset to allow for the stub for the `JsonException` class which was added in `polyfill-php73` version `1.11.0`.
-* Composer: The recommended version of the [Composer PHPCS plugin](https://github.com/Dealerdirect/phpcodesniffer-composer-installer/) has been upped to `^0.5.0`.
+* Composer: The recommended version of the [Composer PHPCS plugin] has been upped to `^0.5.0`.
 * CI: Added early warning system for false positives due to changes in the polyfill libraries themselves.
 
 ### 1.0.1 - 2018-12-16
@@ -149,3 +157,5 @@ All code within the PHPCompatibility organisation is released under the GNU Less
 ### 1.0.0 - 2018-10-07
 
 Initial release of PHPCompatibilitySymfony containing rulesets covering the `polyfill-php*` libraries.
+
+[Composer PHPCS plugin]: https://github.com/Dealerdirect/phpcodesniffer-composer-installer/

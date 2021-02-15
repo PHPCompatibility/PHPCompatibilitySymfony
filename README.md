@@ -96,8 +96,8 @@ For example:
 # For a project which should be compatible with PHP 5.3 up to and including PHP 7.0:
 ./vendor/bin/phpcs -p . --standard=PHPCompatibilitySymfonyPolyfillPHP56 --runtime-set testVersion 5.3-7.0
 
-# For a project which should be compatible with PHP 5.4 and higher:
-./vendor/bin/phpcs -p . --standard=PHPCompatibilitySymfonyPolyfillPHP73 --runtime-set testVersion 5.4-
+# For a project which should be compatible with PHP 7.1 and higher:
+./vendor/bin/phpcs -p . --standard=PHPCompatibilitySymfonyPolyfillPHP73 --runtime-set testVersion 7.1-
 ```
 
 For more detailed information about setting the `testVersion`, see the README of the generic [PHPCompatibility](https://github.com/PHPCompatibility/PHPCompatibility#sniffing-your-code-for-compatibility-with-specific-php-versions) standard.

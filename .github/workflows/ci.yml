@@ -57,6 +57,7 @@ jobs:
           diff -B ./PHPCompatibilitySymfonyPolyfillPHP72/ruleset.xml <(xmllint --format "./PHPCompatibilitySymfonyPolyfillPHP72/ruleset.xml")
           diff -B ./PHPCompatibilitySymfonyPolyfillPHP73/ruleset.xml <(xmllint --format "./PHPCompatibilitySymfonyPolyfillPHP73/ruleset.xml")
           diff -B ./PHPCompatibilitySymfonyPolyfillPHP74/ruleset.xml <(xmllint --format "./PHPCompatibilitySymfonyPolyfillPHP74/ruleset.xml")
+          diff -B ./PHPCompatibilitySymfonyPolyfillPHP80/ruleset.xml <(xmllint --format "./PHPCompatibilitySymfonyPolyfillPHP80/ruleset.xml")
 
   test:
     needs: xmllint
@@ -89,6 +90,10 @@ jobs:
       - name: Conditionally require specific versions of the polyfills
         if: ${{ matrix.php == '5.4' }}
         run: |
+          # Remove the PHP 8 polyfill on PHP < 7 as the minimum requirement is PHP 7.1 and the autoloading
+          # of the polyfill bootstrap file via Composer would generate a parse error, blocking the DealerDirect plugin
+          # from setting the installed_paths for PHPCS.
+          composer remove --dev symfony/polyfill-php80 --no-update --no-scripts
           composer require --no-update symfony/polyfill-php72:"1.19" symfony/polyfill-php73:"1.19" symfony/polyfill-php74:"1.19"
 
       - name: Conditionally update PHPCompatibility to develop version
@@ -117,6 +122,12 @@ jobs:
           vendor/bin/phpcs -ps ./Test/SymfonyPolyfillPHP73Test.php --standard=PHPCompatibilitySymfonyPolyfillPHP73 --runtime-set testVersion 5.3-
           vendor/bin/phpcs -ps ./Test/SymfonyPolyfillPHP74Test.php --standard=PHPCompatibilitySymfonyPolyfillPHP74 --runtime-set testVersion 5.3-
 
+      - name: Test the PHP 8.0 ruleset
+        # The PHP 8.0 polyfill has a minimum PHP requirement of PHP 7.1.
+        if: ${{ matrix.php != '5.4' }}
+        run: |
+          vendor/bin/phpcs -ps ./Test/SymfonyPolyfillPHP80Test.php --standard=PHPCompatibilitySymfonyPolyfillPHP80 --runtime-set testVersion 7.1-
+
       # Check that the rulesets don't throw unnecessary errors for the compat libraries themselves.
       # Note: the polyfills for PHP 5.4 - 7.1 have been decoupled from the monorepo at version 1.19.
       # and are no longer updated.
@@ -143,3 +154,5 @@ jobs:
           vendor/bin/phpcs -ps ./vendor/symfony/polyfill-php72/ --standard=PHPCompatibilitySymfonyPolyfillPHP72 --runtime-set testVersion 7.1-
           vendor/bin/phpcs -ps ./vendor/symfony/polyfill-php73/ --standard=PHPCompatibilitySymfonyPolyfillPHP73 --runtime-set testVersion 7.1-
           vendor/bin/phpcs -ps ./vendor/symfony/polyfill-php74/ --standard=PHPCompatibilitySymfonyPolyfillPHP74 --runtime-set testVersion 7.1-
+          vendor/bin/phpcs -ps ./vendor/symfony/polyfill-php80/ --standard=PHPCompatibilitySymfonyPolyfillPHP80 --runtime-set testVersion 7.1-
+

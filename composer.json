@@ -38,7 +38,8 @@
     "symfony/polyfill-php72": "1.30",
     "symfony/polyfill-php73": "1.x-dev",
     "symfony/polyfill-php74": "1.x-dev",
-    "symfony/polyfill-php80": "1.x-dev"
+    "symfony/polyfill-php80": "1.x-dev",
+    "symfony/polyfill-php81": "1.x-dev"
   },
   "prefer-stable" : true
 }

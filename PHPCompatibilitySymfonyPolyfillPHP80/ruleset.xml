@@ -1,0 +1,23 @@
+<?xml version="1.0"?>
+<ruleset name="PHPCompatibilitySymfonyPolyfillPHP80">
+    <description>PHPCompatibility ruleset for PHP_CodeSniffer which accounts for polyfills provided by the Symfony PHP 8.0 library.</description>
+
+    <rule ref="PHPCompatibility">
+        <!-- https://github.com/symfony/polyfill-php80/blob/master/bootstrap.php -->
+        <exclude name="PHPCompatibility.FunctionUse.NewFunctions.fdivFound"/>
+        <exclude name="PHPCompatibility.FunctionUse.NewFunctions.get_resource_idFound"/>
+        <exclude name="PHPCompatibility.FunctionUse.NewFunctions.preg_last_error_msgFound"/>
+        <exclude name="PHPCompatibility.FunctionUse.NewFunctions.str_containsFound"/>
+        <exclude name="PHPCompatibility.FunctionUse.NewFunctions.str_ends_withFound"/>
+        <exclude name="PHPCompatibility.FunctionUse.NewFunctions.str_starts_withFound"/>
+        <exclude name="PHPCompatibility.Constants.NewConstants.filter_validate_boolFound"/>
+        <exclude name="PHPCompatibility.FunctionUse.NewFunctions.get_debug_typeFound"/>
+
+        <!-- https://github.com/symfony/polyfill-php80/tree/master/Resources/stubs -->
+        <exclude name="PHPCompatibility.Interfaces.NewInterfaces.stringableFound"/>
+        <exclude name="PHPCompatibility.Classes.NewClasses.attributeFound"/>
+        <exclude name="PHPCompatibility.Classes.NewClasses.unhandledmatcherrorFound"/>
+        <exclude name="PHPCompatibility.Classes.NewClasses.valueerrorFound"/>
+    </rule>
+
+</ruleset>

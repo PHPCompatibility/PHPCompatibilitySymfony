@@ -54,13 +54,13 @@ The only supported installation method is via [Composer](https://getcomposer.org
 
 If you don't have a Composer plugin installed to manage the `installed_paths` setting for PHP_CodeSniffer, run the following from the command-line:
 ```bash
-composer require --dev dealerdirect/phpcodesniffer-composer-installer:"^0.7" phpcompatibility/phpcompatibility-symfony:*
+composer require --dev dealerdirect/phpcodesniffer-composer-installer:"^0.7" phpcompatibility/phpcompatibility-symfony:"*"
 composer install
 ```
 
 If you already have a Composer PHP_CodeSniffer plugin installed, run:
 ```bash
-composer require --dev phpcompatibility/phpcompatibility-symfony:*
+composer require --dev phpcompatibility/phpcompatibility-symfony:"*"
 composer install
 ```
 

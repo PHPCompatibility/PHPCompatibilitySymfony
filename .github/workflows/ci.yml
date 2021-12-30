@@ -94,14 +94,14 @@ jobs:
           # Remove the PHP 8 polyfill on PHP < 7 as the minimum requirement is PHP 7.1 and the autoloading
           # of the polyfill bootstrap file via Composer would generate a parse error, blocking the DealerDirect plugin
           # from setting the installed_paths for PHPCS.
-          composer remove --dev symfony/polyfill-php80 --no-update --no-scripts
-          composer require --no-update symfony/polyfill-php72:"1.19" symfony/polyfill-php73:"1.19" symfony/polyfill-php74:"1.19"
+          composer remove --dev symfony/polyfill-php80 --no-update --no-scripts --no-interaction
+          composer require --no-update symfony/polyfill-php72:"1.19" symfony/polyfill-php73:"1.19" symfony/polyfill-php74:"1.19" --no-interaction
 
       - name: Conditionally update PHPCompatibility to develop version
         if: ${{ matrix.phpcompat != 'stable' }}
         run: |
           composer config minimum-stability dev
-          composer require --no-update phpcompatibility/php-compatibility:"${{ matrix.phpcompat }}"
+          composer require --no-update phpcompatibility/php-compatibility:"${{ matrix.phpcompat }}" --no-interaction
 
       - name: Install dependencies
         run: composer install --no-interaction --no-progress

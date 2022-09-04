@@ -2,7 +2,7 @@
   "name" : "phpcompatibility/phpcompatibility-symfony",
   "description" : "A set of rulesets for PHP_CodeSniffer to check for PHP cross-version compatibility issues in projects, while accounting for polyfills provided by the Symfony polyfill libraries.",
   "type" : "phpcodesniffer-standard",
-  "keywords" : [ "compatibility", "phpcs", "standards", "symfony", "polyfill" ],
+  "keywords" : [ "compatibility", "phpcs", "standards", "static analysis", "symfony", "polyfill" ],
   "homepage" : "http://phpcompatibility.com/",
   "license" : "LGPL-3.0-or-later",
   "authors" : [ {

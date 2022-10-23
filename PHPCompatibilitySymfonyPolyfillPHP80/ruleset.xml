@@ -16,6 +16,7 @@
         <!-- https://github.com/symfony/polyfill-php80/tree/master/Resources/stubs -->
         <exclude name="PHPCompatibility.Interfaces.NewInterfaces.stringableFound"/>
         <exclude name="PHPCompatibility.Classes.NewClasses.attributeFound"/>
+        <exclude name="PHPCompatibility.Classes.NewClasses.phptokenFound"/>
         <exclude name="PHPCompatibility.Classes.NewClasses.unhandledmatcherrorFound"/>
         <exclude name="PHPCompatibility.Classes.NewClasses.valueerrorFound"/>
     </rule>

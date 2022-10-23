@@ -2,17 +2,17 @@
 <ruleset name="PHPCompatibilitySymfonyPolyfillPHP70">
     <description>PHPCompatibility ruleset for PHP_CodeSniffer which accounts for polyfills provided by the Symfony PHP 7.0 library.</description>
 
-    <!-- https://github.com/symfony/polyfill-php70/blob/master/composer.json -->
+    <!-- https://github.com/symfony/polyfill-php70/blob/main/composer.json -->
     <rule ref="PHPCompatibilityParagonieRandomCompat"/>
 
     <rule ref="PHPCompatibility">
-        <!-- https://github.com/symfony/polyfill-php70/blob/master/bootstrap.php -->
+        <!-- https://github.com/symfony/polyfill-php70/blob/main/bootstrap.php -->
         <exclude name="PHPCompatibility.FunctionUse.NewFunctions.intdivFound"/>
         <exclude name="PHPCompatibility.FunctionUse.NewFunctions.preg_replace_callback_arrayFound"/>
         <exclude name="PHPCompatibility.FunctionUse.NewFunctions.error_clear_lastFound"/>
         <exclude name="PHPCompatibility.Constants.NewConstants.php_int_minFound"/>
 
-        <!-- https://github.com/symfony/polyfill-php70/tree/master/Resources/stubs -->
+        <!-- https://github.com/symfony/polyfill-php70/tree/main/Resources/stubs -->
         <exclude name="PHPCompatibility.Classes.NewClasses.errorFound"/>
         <exclude name="PHPCompatibility.Classes.NewClasses.arithmeticerrorFound"/>
         <exclude name="PHPCompatibility.Classes.NewClasses.assertionerrorFound"/>

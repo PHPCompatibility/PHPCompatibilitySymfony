@@ -32,3 +32,5 @@ try {
 }
 
 class MyAttributes extends \Attribute {}
+
+if (is_a($token, PhpToken::class)) {}

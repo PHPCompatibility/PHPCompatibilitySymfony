@@ -15,7 +15,8 @@
   } ],
   "support" : {
     "issues" : "https://github.com/PHPCompatibility/PHPCompatibilitySymfony/issues",
-    "source" : "https://github.com/PHPCompatibility/PHPCompatibilitySymfony"
+    "source" : "https://github.com/PHPCompatibility/PHPCompatibilitySymfony",
+    "security": "https://github.com/PHPCompatibility/PHPCompatibilitySymfony/security/policy"
   },
   "config": {
     "allow-plugins": {

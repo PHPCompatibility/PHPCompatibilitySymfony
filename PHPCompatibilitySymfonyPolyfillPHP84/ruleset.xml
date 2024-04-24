@@ -1,0 +1,80 @@
+<?xml version="1.0"?>
+<ruleset xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" name="PHPCompatibilitySymfonyPolyfillPHP84" xsi:noNamespaceSchemaLocation="https://schema.phpcodesniffer.com/phpcs.xsd">
+
+    <description>PHPCompatibility ruleset for PHP_CodeSniffer which accounts for polyfills provided by the Symfony PHP 8.4 library.</description>
+
+    <rule ref="PHPCompatibility">
+        <!-- https://github.com/symfony/polyfill-php84/blob/master/bootstrap.php -->
+        <exclude name="PHPCompatibility.Constants.NewConstants.curl_http_version_3Found"/>
+        <exclude name="PHPCompatibility.Constants.NewConstants.curl_http_version_3onlyFound"/>
+        <exclude name="PHPCompatibility.FunctionUse.NewFunctions.array_findFound"/>
+        <exclude name="PHPCompatibility.FunctionUse.NewFunctions.array_find_keyFound"/>
+        <exclude name="PHPCompatibility.FunctionUse.NewFunctions.array_anyFound"/>
+        <exclude name="PHPCompatibility.FunctionUse.NewFunctions.array_allFound"/>
+        <exclude name="PHPCompatibility.FunctionUse.NewFunctions.fpowFound"/>
+        <exclude name="PHPCompatibility.FunctionUse.NewFunctions.mb_ucfirstFound"/>
+        <exclude name="PHPCompatibility.FunctionUse.NewFunctions.mb_lcfirstFound"/>
+        <exclude name="PHPCompatibility.FunctionUse.NewFunctions.mb_trimFound"/>
+        <exclude name="PHPCompatibility.FunctionUse.NewFunctions.mb_ltrimFound"/>
+        <exclude name="PHPCompatibility.FunctionUse.NewFunctions.mb_rtrimFound"/>
+        <exclude name="PHPCompatibility.FunctionUse.NewFunctions.bcdivmodFound"/>
+        <exclude name="PHPCompatibility.FunctionUse.NewFunctions.grapheme_str_splitFound"/>
+
+        <!-- https://github.com/symfony/polyfill-php84/tree/main/Resources/stubs -->
+        <!--
+        Detection for the Deprecated attribute is incomplete in PHPCompatibility 10.0.0-alpha1.
+        Handling for this should be added once the detection implementation is known.
+        The following exclude is a temporary placeholder, which should be removed as soon as
+        possible as it will ignore too much.
+        -->
+        <exclude name="PHPCompatibility.Attributes.NewAttributes.PHPStormAttributeFound"/>
+
+        <exclude name="PHPCompatibility.Classes.NewClasses.reflectionconstantFound"/>
+    </rule>
+
+    <!-- Prevent false positives being thrown when run over the code of polyfill-php83 itself. -->
+    <rule ref="PHPCompatibility.FunctionUse.RequiredToOptionalFunctionParameters.bcscale_scaleMissing">
+        <exclude-pattern>/polyfill-php84/Php84\.php$</exclude-pattern>
+    </rule>
+    <rule ref="PHPCompatibility.Attributes.NewAttributes.PHPNativeAttributeFound">
+        <exclude-pattern>/polyfill-php84/Resources/stubs/Deprecated\.php$</exclude-pattern>
+    </rule>
+    <rule ref="PHPCompatibility.Classes.NewClasses.attributeFound">
+        <exclude-pattern>/polyfill-php84/Resources/stubs/Deprecated\.php$</exclude-pattern>
+    </rule>
+    <rule ref="PHPCompatibility.FunctionUse.NewFunctions.get_debug_typeFound">
+        <exclude-pattern>/polyfill-php84/Resources/stubs/ReflectionConstant\.php$</exclude-pattern>
+    </rule>
+
+    <!-- This is fine as the autoloading for this file should only ever be triggered when on PHP 8.0 or higher. -->
+    <rule ref="PHPCompatibility.Classes.NewTypedProperties.Found">
+        <exclude-pattern>/polyfill-php84/Resources/stubs/Deprecated\.php$</exclude-pattern>
+    </rule>
+
+    <!-- These are fine as this file will only be used for PHP 8.2 and 8.3. -->
+    <rule ref="PHPCompatibility.FunctionDeclarations.NewReturnTypeDeclarations.UnionTypeFound">
+        <exclude-pattern>/polyfill-php84/bootstrap82\.php$</exclude-pattern>
+    </rule>
+    <rule ref="PHPCompatibility.FunctionDeclarations.NewReturnTypeDeclarations.falseFound">
+        <exclude-pattern>/polyfill-php84/bootstrap82\.php$</exclude-pattern>
+    </rule>
+
+    <!--
+    Not a false positive, but a bug in the Symfony PHP 8.4 polyfill package.
+    Bug has been reported: https://github.com/symfony/polyfill/issues/499#issuecomment-3430423298
+    Temporarily silencing the error as this needs to be solved upstream.
+    -->
+    <rule ref="PHPCompatibility.Classes.NewClasses.valueerrorFound">
+        <exclude-pattern>/polyfill-php84/Php84\.php$</exclude-pattern>
+    </rule>
+
+    <!--
+    Not a false positive, but a bug in the Symfony PHP 8.4 polyfill package.
+    Bug has been reported: https://github.com/symfony/polyfill/issues/551
+    Temporarily silencing the error as this needs to be solved upstream.
+    -->
+    <rule ref="PHPCompatibility.Classes.NewReadonlyProperties.Found">
+        <exclude-pattern>/polyfill-php84/Resources/stubs/Deprecated\.php$</exclude-pattern>
+    </rule>
+
+</ruleset>

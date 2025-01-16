@@ -3,8 +3,8 @@ name: CI
 on:
   # Run on pushes to `master` and on all pull requests.
   push:
-    branches:
-      - master
+#    branches:
+#      - master
   pull_request:
   # Also run this workflow on day 15 of every month as the repo isn't that active.
   schedule:

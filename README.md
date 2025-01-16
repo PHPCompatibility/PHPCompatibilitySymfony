@@ -1,7 +1,7 @@
-[![Latest Stable Version](https://poser.pugx.org/phpcompatibility/phpcompatibility-symfony/v/stable.png)](https://packagist.org/packages/phpcompatibility/phpcompatibility-symfony)
-[![Latest Unstable Version](https://poser.pugx.org/phpcompatibility/phpcompatibility-symfony/v/unstable.png)](https://packagist.org/packages/phpcompatibility/phpcompatibility-symfony)
-[![License](https://poser.pugx.org/phpcompatibility/phpcompatibility-symfony/license.png)](https://github.com/PHPCompatibility/PHPCompatibilitySymfony/blob/master/LICENSE)
-[![Build Status](https://github.com/PHPCompatibility/PHPCompatibilitySymfony/workflows/CI/badge.svg?branch=master)](https://github.com/PHPCompatibility/PHPCompatibilitySymfony/actions)
+[![Latest Stable Version](https://img.shields.io/packagist/v/phpcompatibility/phpcompatibility-symfony?label=stable)](https://packagist.org/packages/phpcompatibility/phpcompatibility-symfony)
+[![Latest Unstable Version](https://img.shields.io/badge/unstable-dev--develop-e68718.svg?maxAge=2419200)](https://packagist.org/packages/phpcompatibility/phpcompatibility-symfony)
+[![License](https://img.shields.io/github/license/PHPCompatibility/PHPCompatibilitySymfony?color=00a7a7)](https://github.com/PHPCompatibility/PHPCompatibilitySymfony/blob/master/LICENSE)
+[![Build Status](https://github.com/PHPCompatibility/PHPCompatibilitySymfony/actions/workflows/ci.yml/badge.svg?branch=master)](https://github.com/PHPCompatibility/PHPCompatibilitySymfony/actions/workflows/ci.yml)
 
 # PHPCompatibilitySymfony
 

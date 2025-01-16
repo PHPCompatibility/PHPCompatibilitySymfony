@@ -118,6 +118,14 @@ All code within the PHPCompatibility organisation is released under the GNU Less
 
 ## Changelog
 
+### 1.2.2 - 2025-01-16
+
+This is a maintenance release.
+
+- The recommended version of the [Composer PHPCS plugin] is now `^1.0.0`.
+- README: Fixed some broken badges.
+- General housekeeping and maintenance. Including a contribution by [@fredden].
+
 ### 1.2.1 - 2022-10-23
 
 * `PHPCompatibilitySymfonyPolyfillPHP80` ruleset: allow for polyfilled `PhpToken` class, which was added in `polyfill-php80` version `1.25.0`.
@@ -168,4 +176,5 @@ Initial release of PHPCompatibilitySymfony containing rulesets covering the `pol
 
 [Composer PHPCS plugin]: https://github.com/PHPCSStandards/composer-installer/
 
+[@fredden]:   https://github.com/fredden
 [@GaryJones]: https://github.com/GaryJones

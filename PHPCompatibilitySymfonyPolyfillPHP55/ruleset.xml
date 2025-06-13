@@ -1,5 +1,6 @@
 <?xml version="1.0"?>
-<ruleset name="PHPCompatibilitySymfonyPolyfillPHP55">
+<ruleset xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" name="PHPCompatibilitySymfonyPolyfillPHP55" xsi:noNamespaceSchemaLocation="https://schema.phpcodesniffer.com/phpcs.xsd">
+
     <description>PHPCompatibility ruleset for PHP_CodeSniffer which accounts for polyfills provided by the Symfony PHP 5.5 library.</description>
 
     <!-- https://github.com/symfony/polyfill-php55/blob/main/composer.json -->

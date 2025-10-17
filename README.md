@@ -118,13 +118,20 @@ All code within the PHPCompatibility organisation is released under the GNU Less
 
 ## Changelog
 
+### 1.2.3 - 2025-10-18
+
+This is a maintenance release.
+
+* The ruleset now includes schema tags.
+* General housekeeping and maintenance.
+
 ### 1.2.2 - 2025-01-16
 
 This is a maintenance release.
 
-- The recommended version of the [Composer PHPCS plugin] is now `^1.0.0`.
-- README: Fixed some broken badges.
-- General housekeeping and maintenance. Including a contribution by [@fredden].
+* The recommended version of the [Composer PHPCS plugin] is now `^1.0.0`.
+* README: Fixed some broken badges.
+* General housekeeping and maintenance. Including a contribution by [@fredden].
 
 ### 1.2.1 - 2022-10-23
 

@@ -11,4 +11,11 @@
         <exclude name="PHPCompatibility.Constants.NewConstants.ldap_escape_dnFound"/>
     </rule>
 
+    <!-- Prevent false positives being thrown when run over the code of polyfill-util itself. -->
+    <rule ref="PHPCompatibility.FunctionUse.NewFunctionParameters.strrchr_before_needleFound">
+        <!-- This looks to be a bug in the polyfill code, but probably pretty much an edge case
+             and if it hasn't been reported to Symfony so far, leave it be. -->
+        <exclude-pattern>/polyfill-util/BinaryNoFuncOverload\.php$</exclude-pattern>
+    </rule>
+
 </ruleset>

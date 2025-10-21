@@ -1,9 +1,9 @@
+# PHPCompatibilitySymfony
+
 [![Latest Stable Version](https://img.shields.io/packagist/v/phpcompatibility/phpcompatibility-symfony?label=stable)](https://packagist.org/packages/phpcompatibility/phpcompatibility-symfony)
 [![Latest Unstable Version](https://img.shields.io/badge/unstable-dev--develop-e68718.svg?maxAge=2419200)](https://packagist.org/packages/phpcompatibility/phpcompatibility-symfony)
 [![License](https://img.shields.io/github/license/PHPCompatibility/PHPCompatibilitySymfony?color=00a7a7)](https://github.com/PHPCompatibility/PHPCompatibilitySymfony/blob/master/LICENSE)
 [![Build Status](https://github.com/PHPCompatibility/PHPCompatibilitySymfony/actions/workflows/ci.yml/badge.svg?branch=master)](https://github.com/PHPCompatibility/PHPCompatibilitySymfony/actions/workflows/ci.yml)
-
-# PHPCompatibilitySymfony
 
 Using PHPCompatibilitySymfony, you can analyse the codebase of a project using any of the [Symfony polyfill libraries](https://github.com/symfony?utf8=?&q=polyfill), for PHP cross-version compatibility.
 
@@ -14,17 +14,17 @@ A set of rulesets for PHP_CodeSniffer to check for PHP cross-version compatibili
 
 These rulesets prevent false positives from the [PHPCompatibility standard](https://github.com/PHPCompatibility/PHPCompatibility) by excluding back-fills and poly-fills which are provided by those libraries.
 
-Symfony Polyfill Library | Corresponding PHPCompatibility Ruleset | Includes
---- | --- | ---
-[`polyfill-php54`](https://github.com/symfony/polyfill-php54) | `PHPCompatibilitySymfonyPolyfillPHP54` |
-[`polyfill-php55`](https://github.com/symfony/polyfill-php55) | `PHPCompatibilitySymfonyPolyfillPHP55` | [`PHPCompatibilityPasswordCompat`](https://github.com/PHPCompatibility/PHPCompatibilityPasswordCompat)
-[`polyfill-php56`](https://github.com/symfony/polyfill-php56) | `PHPCompatibilitySymfonyPolyfillPHP56` |
-[`polyfill-php70`](https://github.com/symfony/polyfill-php70) | `PHPCompatibilitySymfonyPolyfillPHP70` | [`PHPCompatibilityParagonieRandomCompat`](https://github.com/PHPCompatibility/PHPCompatibilityParagonie)
-[`polyfill-php71`](https://github.com/symfony/polyfill-php71) | `PHPCompatibilitySymfonyPolyfillPHP71` |
-[`polyfill-php72`](https://github.com/symfony/polyfill-php72) | `PHPCompatibilitySymfonyPolyfillPHP72` |
-[`polyfill-php73`](https://github.com/symfony/polyfill-php73) | `PHPCompatibilitySymfonyPolyfillPHP73` |
-[`polyfill-php74`](https://github.com/symfony/polyfill-php74) | `PHPCompatibilitySymfonyPolyfillPHP74` |
-[`polyfill-php80`](https://github.com/symfony/polyfill-php80) | `PHPCompatibilitySymfonyPolyfillPHP80` |
+| Symfony Polyfill Library | Corresponding PHPCompatibility Ruleset | Includes                                  |
+|--------------------------|----------------------------------------|-------------------------------------------|
+| [`polyfill-php54`]       | `PHPCompatibilitySymfonyPolyfillPHP54` |                                           |
+| [`polyfill-php55`]       | `PHPCompatibilitySymfonyPolyfillPHP55` | [`PHPCompatibilityPasswordCompat`]        |
+| [`polyfill-php56`]       | `PHPCompatibilitySymfonyPolyfillPHP56` |                                           |
+| [`polyfill-php70`]       | `PHPCompatibilitySymfonyPolyfillPHP70` | [`PHPCompatibilityParagonieRandomCompat`] |
+| [`polyfill-php71`]       | `PHPCompatibilitySymfonyPolyfillPHP71` |                                           |
+| [`polyfill-php72`]       | `PHPCompatibilitySymfonyPolyfillPHP72` |                                           |
+| [`polyfill-php73`]       | `PHPCompatibilitySymfonyPolyfillPHP73` |                                           |
+| [`polyfill-php74`]       | `PHPCompatibilitySymfonyPolyfillPHP74` |                                           |
+| [`polyfill-php80`]       | `PHPCompatibilitySymfonyPolyfillPHP80` |                                           |
 
 > About "Includes":
 > Some polyfills have other polyfills as dependencies. If the PHPCompatibility project offers a dedicated ruleset for the polyfill dependency, that ruleset will be included in the ruleset for the higher level polyfill.
@@ -38,8 +38,8 @@ Symfony Polyfill Library | Corresponding PHPCompatibility Ruleset | Includes
 ## Requirements
 
 * [PHP_CodeSniffer](https://github.com/PHPCSStandards/PHP_CodeSniffer).
-    * PHP 5.3+ for use with [PHP_CodeSniffer](https://github.com/PHPCSStandards/PHP_CodeSniffer) 2.3.0+.
-    * PHP 5.4+ for use with [PHP_CodeSniffer](https://github.com/PHPCSStandards/PHP_CodeSniffer) 3.0.2+.
+    - PHP 5.3+ for use with [PHP_CodeSniffer](https://github.com/PHPCSStandards/PHP_CodeSniffer) 2.3.0+.
+    - PHP 5.4+ for use with [PHP_CodeSniffer](https://github.com/PHPCSStandards/PHP_CodeSniffer) 3.0.2+.
 
     Use the latest stable release of PHP_CodeSniffer for the best results.
     The minimum _recommended_ version of PHP_CodeSniffer is version 2.6.0.
@@ -113,4 +113,18 @@ By default PHP_CodeSniffer will analyse PHP, JavaScript and CSS files. As the PH
 
 ## License
 
-All code within the PHPCompatibility organisation is released under the GNU Lesser General Public License (LGPL). For more information, visit https://www.gnu.org/copyleft/lesser.html
+All code within the PHPCompatibility organisation is released under the GNU Lesser General Public License (LGPL). For more information, visit <https://www.gnu.org/licenses/lgpl-3.0.html>.
+
+
+[`PHPCompatibilityPasswordCompat`]:        https://github.com/PHPCompatibility/PHPCompatibilityPasswordCompat
+[`PHPCompatibilityParagonieRandomCompat`]: https://github.com/PHPCompatibility/PHPCompatibilityParagonie
+
+[`polyfill-php54`]: https://github.com/symfony/polyfill-php54
+[`polyfill-php55`]: https://github.com/symfony/polyfill-php55
+[`polyfill-php56`]: https://github.com/symfony/polyfill-php56
+[`polyfill-php70`]: https://github.com/symfony/polyfill-php70
+[`polyfill-php71`]: https://github.com/symfony/polyfill-php71
+[`polyfill-php72`]: https://github.com/symfony/polyfill-php72
+[`polyfill-php73`]: https://github.com/symfony/polyfill-php73
+[`polyfill-php74`]: https://github.com/symfony/polyfill-php74
+[`polyfill-php80`]: https://github.com/symfony/polyfill-php80

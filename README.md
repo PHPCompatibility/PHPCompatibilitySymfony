@@ -28,10 +28,10 @@ These rulesets prevent false positives from the [PHPCompatibility standard][PHPC
 | [`polyfill-php81`]       | `PHPCompatibilitySymfonyPolyfillPHP81` |                                                                      |
 
 > [!NOTE]
-> About "Includes":
+> About "Includes":  
 > Some polyfills have other polyfills as dependencies. If the PHPCompatibility project offers a dedicated ruleset for the polyfill dependency, that ruleset will be included in the ruleset for the higher level polyfill.
 >
-> For example:
+> For example:  
 > As the `polyfill-php70` library declares `random_compat` [as a dependency](https://github.com/symfony/polyfill-php70/blob/master/composer.json), the `PHPCompatibilitySymfonyPolyfillPHP70` ruleset includes the `PHPCompatibilityParagonieRandomCompat` ruleset.
 >
 > In practice, this means that if your project uses several polyfills, you can use the information in "Includes" to help you decide which rulesets to use.

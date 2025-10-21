@@ -18,6 +18,8 @@
         <exclude name="PHPCompatibility.FunctionUse.NewFunctions.mb_ordFound"/>
         <exclude name="PHPCompatibility.FunctionUse.NewFunctions.mb_chrFound"/>
         <exclude name="PHPCompatibility.FunctionUse.NewFunctions.mb_scrubFound"/>
+        <exclude name="PHPCompatibility.FunctionUse.RemovedFunctions.utf8_encodeDeprecated"/>
+        <exclude name="PHPCompatibility.FunctionUse.RemovedFunctions.utf8_decodeDeprecated"/>
     </rule>
 
     <!-- Prevent false positives being thrown when run over the code of polyfill-php72 itself. -->

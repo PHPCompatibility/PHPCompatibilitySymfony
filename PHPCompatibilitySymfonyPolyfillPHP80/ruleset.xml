@@ -22,4 +22,9 @@
         <exclude name="PHPCompatibility.Classes.NewClasses.valueerrorFound"/>
     </rule>
 
+    <!-- Prevent false positives being thrown when run over the code of polyfill-util itself. -->
+    <rule ref="PHPCompatibility.Attributes.NewAttributes.PHPNativeAttributeFound">
+        <exclude-pattern>/polyfill-php80/Resources/stubs/Attribute\.php$</exclude-pattern>
+    </rule>
+
 </ruleset>

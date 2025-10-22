@@ -4,7 +4,7 @@
     <description>PHPCompatibility ruleset for PHP_CodeSniffer which accounts for polyfills provided by the Symfony PHP 8.4 library.</description>
 
     <rule ref="PHPCompatibility">
-        <!-- https://github.com/symfony/polyfill-php84/blob/master/bootstrap.php -->
+        <!-- https://github.com/symfony/polyfill-php84/blob/1.x/bootstrap.php -->
         <exclude name="PHPCompatibility.Constants.NewConstants.curl_http_version_3Found"/>
         <exclude name="PHPCompatibility.Constants.NewConstants.curl_http_version_3onlyFound"/>
         <exclude name="PHPCompatibility.FunctionUse.NewFunctions.array_findFound"/>
@@ -20,7 +20,7 @@
         <exclude name="PHPCompatibility.FunctionUse.NewFunctions.bcdivmodFound"/>
         <exclude name="PHPCompatibility.FunctionUse.NewFunctions.grapheme_str_splitFound"/>
 
-        <!-- https://github.com/symfony/polyfill-php84/tree/main/Resources/stubs -->
+        <!-- https://github.com/symfony/polyfill-php84/tree/1.x/Resources/stubs -->
         <!--
         Detection for the Deprecated attribute is incomplete in PHPCompatibility 10.0.0-alpha1.
         Handling for this should be added once the detection implementation is known.
@@ -32,7 +32,7 @@
         <exclude name="PHPCompatibility.Classes.NewClasses.reflectionconstantFound"/>
     </rule>
 
-    <!-- Prevent false positives being thrown when run over the code of polyfill-php83 itself. -->
+    <!-- Prevent false positives being thrown when run over the code of polyfill-php84 itself. -->
     <rule ref="PHPCompatibility.FunctionUse.RequiredToOptionalFunctionParameters.bcscale_scaleMissing">
         <exclude-pattern>/polyfill-php84/Php84\.php$</exclude-pattern>
     </rule>

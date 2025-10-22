@@ -4,13 +4,13 @@
     <description>PHPCompatibility ruleset for PHP_CodeSniffer which accounts for polyfills provided by the Symfony PHP 8.1 library.</description>
 
     <rule ref="PHPCompatibility">
-        <!-- https://github.com/symfony/polyfill-php81/blob/main/bootstrap.php -->
+        <!-- https://github.com/symfony/polyfill-php81/blob/1.x/bootstrap.php -->
         <exclude name="PHPCompatibility.Constants.NewConstants.mysqli_refresh_replicaFound"/>
         <exclude name="PHPCompatibility.Constants.RemovedConstants.mysqli_refresh_replicaDeprecated"/>
         <exclude name="PHPCompatibility.FunctionUse.NewFunctions.array_is_listFound"/>
         <exclude name="PHPCompatibility.FunctionUse.NewFunctions.enum_existsFound"/>
 
-        <!-- https://github.com/symfony/polyfill-php81/tree/main/Resources/stubs -->
+        <!-- https://github.com/symfony/polyfill-php81/tree/1.x/Resources/stubs -->
         <exclude name="PHPCompatibility.Classes.NewClasses.curlstringfileFound"/>
     </rule>
 

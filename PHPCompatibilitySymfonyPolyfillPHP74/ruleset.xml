@@ -4,7 +4,7 @@
     <description>PHPCompatibility ruleset for PHP_CodeSniffer which accounts for polyfills provided by the Symfony PHP 7.4 library.</description>
 
     <rule ref="PHPCompatibility">
-        <!-- https://github.com/symfony/polyfill-php74/blob/main/bootstrap.php -->
+        <!-- https://github.com/symfony/polyfill-php74/blob/1.x/bootstrap.php -->
         <exclude name="PHPCompatibility.FunctionUse.NewFunctions.get_mangled_object_varsFound"/>
         <exclude name="PHPCompatibility.FunctionUse.NewFunctions.mb_str_splitFound"/>
         <exclude name="PHPCompatibility.FunctionUse.NewFunctions.password_algosFound"/>

@@ -4,7 +4,7 @@
     <description>PHPCompatibility ruleset for PHP_CodeSniffer which accounts for polyfills provided by the Symfony PHP 7.1 library.</description>
 
     <rule ref="PHPCompatibility">
-        <!-- https://github.com/symfony/polyfill-php71/blob/main/bootstrap.php -->
+        <!-- https://github.com/symfony/polyfill-php71/blob/v1.19.0/bootstrap.php -->
         <exclude name="PHPCompatibility.FunctionUse.NewFunctions.is_iterableFound"/>
     </rule>
 

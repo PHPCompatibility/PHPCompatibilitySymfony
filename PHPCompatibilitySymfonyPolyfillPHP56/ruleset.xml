@@ -4,7 +4,7 @@
     <description>PHPCompatibility ruleset for PHP_CodeSniffer which accounts for polyfills provided by the Symfony PHP 5.6 libary.</description>
 
     <rule ref="PHPCompatibility">
-        <!-- https://github.com/symfony/polyfill-php56/blob/main/bootstrap.php -->
+        <!-- https://github.com/symfony/polyfill-php56/blob/v1.19.0/bootstrap.php -->
         <exclude name="PHPCompatibility.FunctionUse.NewFunctions.hash_equalsFound"/>
         <exclude name="PHPCompatibility.FunctionUse.NewFunctions.ldap_escapeFound"/>
         <exclude name="PHPCompatibility.Constants.NewConstants.ldap_escape_filterFound"/>

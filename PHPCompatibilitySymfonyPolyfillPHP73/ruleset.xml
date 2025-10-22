@@ -4,7 +4,7 @@
     <description>PHPCompatibility ruleset for PHP_CodeSniffer which accounts for polyfills provided by the Symfony PHP 7.3 library.</description>
 
     <rule ref="PHPCompatibility">
-        <!-- https://github.com/symfony/polyfill-php73/blob/main/bootstrap.php -->
+        <!-- https://github.com/symfony/polyfill-php73/blob/1.x/bootstrap.php -->
         <exclude name="PHPCompatibility.FunctionUse.NewFunctions.array_key_firstFound"/>
         <exclude name="PHPCompatibility.FunctionUse.NewFunctions.array_key_lastFound"/>
         <exclude name="PHPCompatibility.FunctionUse.NewFunctions.hrtimeFound"/>

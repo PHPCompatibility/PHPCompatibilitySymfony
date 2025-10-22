@@ -4,19 +4,19 @@
     <description>PHPCompatibility ruleset for PHP_CodeSniffer which accounts for polyfills provided by the Symfony PHP 8.2 library.</description>
 
     <rule ref="PHPCompatibility">
-        <!-- https://github.com/symfony/polyfill-php82/blob/master/bootstrap.php -->
+        <!-- https://github.com/symfony/polyfill-php82/blob/1.x/bootstrap.php -->
         <exclude name="PHPCompatibility.FunctionUse.NewFunctions.odbc_connection_string_is_quotedFound"/>
         <exclude name="PHPCompatibility.FunctionUse.NewFunctions.odbc_connection_string_should_quoteFound"/>
         <exclude name="PHPCompatibility.FunctionUse.NewFunctions.odbc_connection_string_quoteFound"/>
         <exclude name="PHPCompatibility.FunctionUse.NewFunctions.ini_parse_quantityFound"/>
 
-        <!-- https://github.com/symfony/polyfill-php82/tree/main/Resources/stubs -->
+        <!-- https://github.com/symfony/polyfill-php82/tree/1.x/Resources/stubs -->
         <!--
         Detection for the AllowDynamicProperties and SensitiveParameter attributes is incomplete in PHPCompatibility 10.0.0-alpha1.
         This section should be filled out once the detection implementation is known.
         -->
 
-        <!-- https://github.com/symfony/polyfill-php82/tree/main/Resources/stubs/Random -->
+        <!-- https://github.com/symfony/polyfill-php82/tree/1.x/Resources/stubs/Random -->
         <exclude name="PHPCompatibility.Classes.NewClasses.random_brokenrandomengineerrorFound"/>
         <exclude name="PHPCompatibility.Classes.NewClasses.random_randomerrorFound"/>
         <exclude name="PHPCompatibility.Classes.NewClasses.random_randomexceptionFound"/>

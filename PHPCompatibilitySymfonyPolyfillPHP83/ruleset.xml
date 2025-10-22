@@ -1,0 +1,98 @@
+<?xml version="1.0"?>
+<ruleset xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" name="PHPCompatibilitySymfonyPolyfillPHP83" xsi:noNamespaceSchemaLocation="https://schema.phpcodesniffer.com/phpcs.xsd">
+
+    <description>PHPCompatibility ruleset for PHP_CodeSniffer which accounts for polyfills provided by the Symfony PHP 8.3 library.</description>
+
+    <rule ref="PHPCompatibility">
+        <!-- https://github.com/symfony/polyfill-php83/blob/master/bootstrap.php -->
+        <exclude name="PHPCompatibility.FunctionUse.NewFunctions.json_validateFound"/>
+        <exclude name="PHPCompatibility.FunctionUse.NewFunctions.mb_str_padFound"/>
+        <exclude name="PHPCompatibility.FunctionUse.NewFunctions.stream_context_set_optionsFound"/>
+        <exclude name="PHPCompatibility.FunctionUse.NewFunctions.str_incrementFound"/>
+        <exclude name="PHPCompatibility.FunctionUse.NewFunctions.str_decrementFound"/>
+        <exclude name="PHPCompatibility.FunctionUse.NewFunctions.ldap_exop_syncFound"/>
+        <exclude name="PHPCompatibility.FunctionUse.NewFunctions.ldap_connect_walletFound"/>
+
+        <!-- https://github.com/symfony/polyfill-php83/tree/main/Resources/stubs -->
+        <!--
+        Detection for the Override attributes is incomplete in PHPCompatibility 10.0.0-alpha1.
+        Handling for this should be added once the detection implementation is known.
+        -->
+        <exclude name="PHPCompatibility.Classes.NewClasses.dateerrorFound"/>
+        <exclude name="PHPCompatibility.Classes.NewClasses.dateexceptionFound"/>
+        <exclude name="PHPCompatibility.Classes.NewClasses.dateinvalidoperationexceptionFound"/>
+        <exclude name="PHPCompatibility.Classes.NewClasses.dateinvalidtimezoneexceptionFound"/>
+        <exclude name="PHPCompatibility.Classes.NewClasses.datemalformedintervalstringexceptionFound"/>
+        <exclude name="PHPCompatibility.Classes.NewClasses.datemalformedperiodstringexceptionFound"/>
+        <exclude name="PHPCompatibility.Classes.NewClasses.datemalformedstringexceptionFound"/>
+        <exclude name="PHPCompatibility.Classes.NewClasses.dateobjecterrorFound"/>
+        <exclude name="PHPCompatibility.Classes.NewClasses.daterangeerrorFound"/>
+        <exclude name="PHPCompatibility.Classes.NewClasses.sqlite3exceptionFound"/>
+    </rule>
+
+    <!-- Prevent false positives being thrown when run over the code of polyfill-php83 itself. -->
+    <rule ref="PHPCompatibility.Attributes.NewAttributes.PHPNativeAttributeFound">
+        <exclude-pattern>/polyfill-php83/Resources/stubs/Override\.php$</exclude-pattern>
+    </rule>
+    <rule ref="PHPCompatibility.Classes.NewClasses.attributeFound">
+        <exclude-pattern>/polyfill-php83/Resources/stubs/Override\.php$</exclude-pattern>
+    </rule>
+
+    <rule ref="PHPCompatibility.FunctionUse.OptionalToRequiredFunctionParameters.stream_context_set_option_option_nameSoftRequired">
+        <exclude-pattern>/polyfill-php83/bootstrap\.php$</exclude-pattern>
+    </rule>
+    <rule ref="PHPCompatibility.FunctionUse.OptionalToRequiredFunctionParameters.stream_context_set_option_valueSoftRequired">
+        <exclude-pattern>/polyfill-php83/bootstrap\.php$</exclude-pattern>
+    </rule>
+    <rule ref="PHPCompatibility.FunctionUse.RemovedFunctionParameters.ldap_exop_response_dataDeprecated">
+        <exclude-pattern>/polyfill-php83/bootstrap\.php$</exclude-pattern>
+        <exclude-pattern>/polyfill-php83/bootstrap81\.php$</exclude-pattern>
+    </rule>
+    <rule ref="PHPCompatibility.FunctionUse.RemovedFunctionParameters.ldap_exop_response_oidDeprecated">
+        <exclude-pattern>/polyfill-php83/bootstrap\.php$</exclude-pattern>
+        <exclude-pattern>/polyfill-php83/bootstrap81\.php$</exclude-pattern>
+    </rule>
+    <rule ref="PHPCompatibility.ParameterValues.RemovedLdapConnectSignatures.DeprecatedThreePlusParamSignature">
+        <exclude-pattern>/polyfill-php83/bootstrap\.php$</exclude-pattern>
+        <exclude-pattern>/polyfill-php83/bootstrap81\.php$</exclude-pattern>
+    </rule>
+
+    <!-- These are fine as this file will only be used for PHP 8.1 and 8.2. -->
+    <rule ref="PHPCompatibility.Classes.NewClasses.ldap_connectionFound">
+        <exclude-pattern>/polyfill-php83/bootstrap81\.php$</exclude-pattern>
+    </rule>
+    <rule ref="PHPCompatibility.FunctionUse.NewFunctionParameters.ldap_exop_controlsFound">
+        <exclude-pattern>/polyfill-php83/bootstrap81\.php$</exclude-pattern>
+    </rule>
+    <rule ref="PHPCompatibility.FunctionDeclarations.NewReturnTypeDeclarations.UnionTypeFound">
+        <exclude-pattern>/polyfill-php83/bootstrap81\.php$</exclude-pattern>
+    </rule>
+    <rule ref="PHPCompatibility.FunctionDeclarations.NewReturnTypeDeclarations.falseFound">
+        <exclude-pattern>/polyfill-php83/bootstrap81\.php$</exclude-pattern>
+    </rule>
+    <rule ref="PHPCompatibility.Attributes.NewAttributes.PHPNativeAttributeFound">
+        <exclude-pattern>/polyfill-php83/bootstrap81\.php$</exclude-pattern>
+    </rule>
+    <rule ref="PHPCompatibility.Attributes.NewAttributes.FoundInline">
+        <exclude-pattern>/polyfill-php83/bootstrap81\.php$</exclude-pattern>
+    </rule>
+
+    <!--
+    Not a false positive, but a bug in the Symfony PHP 8.3 polyfill package.
+    Bug has been reported: https://github.com/symfony/polyfill/issues/499#issuecomment-3430297592
+    Temporarily silencing the error as this needs to be solved upstream.
+    -->
+    <rule ref="PHPCompatibility.Classes.NewClasses.valueerrorFound">
+        <exclude-pattern>/polyfill-php83/Php83\.php$</exclude-pattern>
+    </rule>
+
+    <!--
+    Not a false positive, but a bug in the Symfony PHP 8.3 polyfill package.
+    Bug has been reported: https://github.com/symfony/polyfill/issues/550
+    Temporarily silencing the error as this needs to be solved upstream.
+    -->
+    <rule ref="PHPCompatibility.FunctionUse.NewFunctionParameters.ldap_exop_controlsFound">
+        <exclude-pattern>/polyfill-php83/bootstrap\.php$</exclude-pattern>
+    </rule>
+
+</ruleset>

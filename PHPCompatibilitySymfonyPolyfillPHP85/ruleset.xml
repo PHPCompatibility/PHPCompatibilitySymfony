@@ -14,10 +14,7 @@
         <!--
         Detection for the DelayedTargetValidation and NoDiscard attributes is incomplete in PHPCompatibility 10.0.0-alpha1.
         This section should be filled out once the detection implementation is known.
-        The following exclude is a temporary placeholder, which should be removed as soon as
-        possible as it will ignore too much.
         -->
-        <exclude name="PHPCompatibility.Attributes.NewAttributes.Found"/>
     </rule>
 
     <!-- Prevent false positives being thrown when run over the code of polyfill-php84 itself. -->

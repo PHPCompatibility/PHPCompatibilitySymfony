@@ -26,6 +26,7 @@ These rulesets prevent false positives from the [PHPCompatibility standard][PHPC
 | [`polyfill-php74`]       | `PHPCompatibilitySymfonyPolyfillPHP74` |                                                                      |
 | [`polyfill-php80`]       | `PHPCompatibilitySymfonyPolyfillPHP80` |                                                                      |
 | [`polyfill-php81`]       | `PHPCompatibilitySymfonyPolyfillPHP81` |                                                                      |
+| [`polyfill-php82`]       | `PHPCompatibilitySymfonyPolyfillPHP82` |                                                                      |
 
 > [!NOTE]
 > About "Includes":  
@@ -99,6 +100,7 @@ vendor/bin/phpcs -p . --standard=PHPCompatibilitySymfonyPolyfillPHP73
 vendor/bin/phpcs -p . --standard=PHPCompatibilitySymfonyPolyfillPHP74
 vendor/bin/phpcs -p . --standard=PHPCompatibilitySymfonyPolyfillPHP80
 vendor/bin/phpcs -p . --standard=PHPCompatibilitySymfonyPolyfillPHP81
+vendor/bin/phpcs -p . --standard=PHPCompatibilitySymfonyPolyfillPHP82
 
 # You can also combine the standards if your project uses several:
 vendor/bin/phpcs -p . --standard=PHPCompatibilitySymfonyPolyfillPHP55,PHPCompatibilitySymfonyPolyfillPHP70,PHPCompatibilitySymfonyPolyfillPHP73
@@ -153,3 +155,4 @@ All code within the PHPCompatibility organisation is released under the GNU Less
 [`polyfill-php74`]:           https://github.com/symfony/polyfill-php74
 [`polyfill-php80`]:           https://github.com/symfony/polyfill-php80
 [`polyfill-php81`]:           https://github.com/symfony/polyfill-php81
+[`polyfill-php82`]:           https://github.com/symfony/polyfill-php82

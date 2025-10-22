@@ -24,5 +24,9 @@ grapheme_str_split($string);
 
 $r = new ReflectionConstant(ClassName::CONSTANT_NAME);
 
+/*
+// This test will not help at this time as we can't just ignore the use of the Deprecated attribute
+// with the current attribute handling in PHPCompatibility 10.0.
 #[Deprecated]
 function foo() {}
+*/

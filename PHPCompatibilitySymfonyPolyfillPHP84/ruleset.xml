@@ -24,10 +24,7 @@
         <!--
         Detection for the Deprecated attribute is incomplete in PHPCompatibility 10.0.0-alpha1.
         Handling for this should be added once the detection implementation is known.
-        The following exclude is a temporary placeholder, which should be removed as soon as
-        possible as it will ignore too much.
         -->
-        <exclude name="PHPCompatibility.Attributes.NewAttributes.PHPStormAttributeFound"/>
 
         <exclude name="PHPCompatibility.Classes.NewClasses.reflectionconstantFound"/>
     </rule>

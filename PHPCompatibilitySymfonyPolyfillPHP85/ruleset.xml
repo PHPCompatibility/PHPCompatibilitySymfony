@@ -1,0 +1,38 @@
+<?xml version="1.0"?>
+<ruleset xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" name="PHPCompatibilitySymfonyPolyfillPHP85" xsi:noNamespaceSchemaLocation="https://schema.phpcodesniffer.com/phpcs.xsd">
+
+    <description>PHPCompatibility ruleset for PHP_CodeSniffer which accounts for polyfills provided by the Symfony PHP 8.5 library.</description>
+
+    <rule ref="PHPCompatibility">
+        <!-- https://github.com/symfony/polyfill-php85/blob/1.x/bootstrap.php -->
+        <exclude name="PHPCompatibility.FunctionUse.NewFunctions.get_error_handlerFound"/>
+        <exclude name="PHPCompatibility.FunctionUse.NewFunctions.get_exception_handlerFound"/>
+        <exclude name="PHPCompatibility.FunctionUse.NewFunctions.array_firstFound"/>
+        <exclude name="PHPCompatibility.FunctionUse.NewFunctions.array_lastFound"/>
+
+        <!-- https://github.com/symfony/polyfill-php85/tree/1.x/Resources/stubs -->
+        <!--
+        Detection for the DelayedTargetValidation and NoDiscard attributes is incomplete in PHPCompatibility 10.0.0-alpha1.
+        This section should be filled out once the detection implementation is known.
+        The following exclude is a temporary placeholder, which should be removed as soon as
+        possible as it will ignore too much.
+        -->
+        <exclude name="PHPCompatibility.Attributes.NewAttributes.Found"/>
+    </rule>
+
+    <!-- Prevent false positives being thrown when run over the code of polyfill-php84 itself. -->
+    <rule ref="PHPCompatibility.Attributes.NewAttributes.PHPNativeAttributeFound">
+        <exclude-pattern>/polyfill-php85/Resources/stubs/DelayedTargetValidation\.php$</exclude-pattern>
+        <exclude-pattern>/polyfill-php85/Resources/stubs/NoDiscard\.php$</exclude-pattern>
+    </rule>
+    <rule ref="PHPCompatibility.Classes.NewClasses.attributeFound">
+        <exclude-pattern>/polyfill-php85/Resources/stubs/DelayedTargetValidation\.php$</exclude-pattern>
+        <exclude-pattern>/polyfill-php85/Resources/stubs/NoDiscard\.php$</exclude-pattern>
+    </rule>
+
+    <!-- This is fine as the autoloading for this file should only ever be triggered when on PHP 8.0 or higher. -->
+    <rule ref="PHPCompatibility.Classes.NewTypedProperties.Found">
+        <exclude-pattern>/polyfill-php85/Resources/stubs/NoDiscard\.php$</exclude-pattern>
+    </rule>
+
+</ruleset>

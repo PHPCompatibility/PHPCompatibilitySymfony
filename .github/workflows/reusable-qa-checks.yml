@@ -1,0 +1,221 @@
+name: CI
+
+on:
+  workflow_call:
+
+permissions: {}
+
+jobs:
+  xmllint:
+    name: 'Check XML'
+    runs-on: ubuntu-latest
+
+    env:
+      XMLLINT_INDENT: '    '
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@08c6903cd8c0fde910a37f88322edcfb5dd907a8 # v5.0.0
+        with:
+          persist-credentials: false
+
+      - name: Install PHP
+        uses: shivammathur/setup-php@bf6b4fbd49ca58e4608c9c89fba0b8d90bd2a39f # 2.35.5
+        with:
+          php-version: 'latest'
+          coverage: none
+
+      # Install dependencies to make sure the PHPCS XSD file is available.
+      - name: Install dependencies
+        run: composer install --no-dev --no-interaction --no-progress
+
+      - name: Validate Ruleset XML file against schema
+        uses: phpcsstandards/xmllint-validate@0fd9c4a9046055f621fca4bbdccb8eab1fd59fdc # v1.0.1
+        with:
+          pattern: "./*/ruleset.xml"
+          xsd-file: "vendor/squizlabs/php_codesniffer/phpcs.xsd"
+
+      # Check the code-style consistency of the xml files.
+      # Note: this needs xmllint, but that will be installed via the phpcsstandards/xmllint-validate action runner.
+      - name: Check code style
+        run: |
+          diff -B ./PHPCompatibilitySymfonyPolyfillPHP54/ruleset.xml <(xmllint --format "./PHPCompatibilitySymfonyPolyfillPHP54/ruleset.xml")
+          diff -B ./PHPCompatibilitySymfonyPolyfillPHP55/ruleset.xml <(xmllint --format "./PHPCompatibilitySymfonyPolyfillPHP55/ruleset.xml")
+          diff -B ./PHPCompatibilitySymfonyPolyfillPHP56/ruleset.xml <(xmllint --format "./PHPCompatibilitySymfonyPolyfillPHP56/ruleset.xml")
+          diff -B ./PHPCompatibilitySymfonyPolyfillPHP70/ruleset.xml <(xmllint --format "./PHPCompatibilitySymfonyPolyfillPHP70/ruleset.xml")
+          diff -B ./PHPCompatibilitySymfonyPolyfillPHP71/ruleset.xml <(xmllint --format "./PHPCompatibilitySymfonyPolyfillPHP71/ruleset.xml")
+          diff -B ./PHPCompatibilitySymfonyPolyfillPHP72/ruleset.xml <(xmllint --format "./PHPCompatibilitySymfonyPolyfillPHP72/ruleset.xml")
+          diff -B ./PHPCompatibilitySymfonyPolyfillPHP73/ruleset.xml <(xmllint --format "./PHPCompatibilitySymfonyPolyfillPHP73/ruleset.xml")
+          diff -B ./PHPCompatibilitySymfonyPolyfillPHP74/ruleset.xml <(xmllint --format "./PHPCompatibilitySymfonyPolyfillPHP74/ruleset.xml")
+          diff -B ./PHPCompatibilitySymfonyPolyfillPHP80/ruleset.xml <(xmllint --format "./PHPCompatibilitySymfonyPolyfillPHP80/ruleset.xml")
+          diff -B ./PHPCompatibilitySymfonyPolyfillPHP81/ruleset.xml <(xmllint --format "./PHPCompatibilitySymfonyPolyfillPHP81/ruleset.xml")
+          diff -B ./PHPCompatibilitySymfonyPolyfillPHP82/ruleset.xml <(xmllint --format "./PHPCompatibilitySymfonyPolyfillPHP82/ruleset.xml")
+          diff -B ./PHPCompatibilitySymfonyPolyfillPHP83/ruleset.xml <(xmllint --format "./PHPCompatibilitySymfonyPolyfillPHP83/ruleset.xml")
+          diff -B ./PHPCompatibilitySymfonyPolyfillPHP84/ruleset.xml <(xmllint --format "./PHPCompatibilitySymfonyPolyfillPHP84/ruleset.xml")
+          diff -B ./PHPCompatibilitySymfonyPolyfillPHP85/ruleset.xml <(xmllint --format "./PHPCompatibilitySymfonyPolyfillPHP85/ruleset.xml")
+
+  test:
+    needs: xmllint
+    runs-on: ubuntu-latest
+
+    strategy:
+      matrix:
+        # These PHP versions should align with the PHP version drops in Symfony itself.
+        # - Originally the Symfony polyfills supported PHP >= 5.3.3 (tested via PHP 5.4 as setup-php doesn't install PHP 5.3).
+        #   The polyfills need to be installed at v 1.19 (last before the version drop) to test this.
+        # - As of version v 1.20, the Symfony polyfills support PHP >= 7.1.
+        #   The polyfills need to be installed at v 1.30 (last before the version drop) to test this.
+        # - As of version v 1.31, the Symfony polyfills support PHP >= 7.2 (tested via PHP "latest").
+        #   The polyfills should default to the latest release to test this.
+        php: ['5.4', '7.1', 'latest']
+        phpcompat: ['stable']
+        experimental: [false]
+
+        include:
+          - php: '7.4'
+            phpcompat: 'dev-develop as 10.99.99'
+            experimental: true
+
+    name: "Test: PHP ${{ matrix.php }} - PHPCompat ${{ matrix.phpcompat }}"
+    continue-on-error: ${{ matrix.experimental }}
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@08c6903cd8c0fde910a37f88322edcfb5dd907a8 # v5.0.0
+        with:
+          persist-credentials: false
+
+      - name: Install PHP
+        uses: shivammathur/setup-php@bf6b4fbd49ca58e4608c9c89fba0b8d90bd2a39f # 2.35.5
+        with:
+          php-version: ${{ matrix.php }}
+          ini-values: error_reporting=E_ALL, display_errors=On, display_startup_errors=On
+          coverage: none
+
+        # Remove the PHP 8.x polyfills on PHP < 7 as the minimum requirement is PHP 7.1 and the autoloading
+        # of the polyfill bootstrap file via Composer would generate a parse error, blocking the DealerDirect plugin
+        # from setting the installed_paths for PHPCS.
+      - name: "Conditionally remove some polyfill packages (PHP 5.4)"
+        if: ${{ matrix.php == '5.4' }}
+        run: >
+          composer remove --dev --no-update --no-scripts --no-interaction
+          symfony/polyfill-php80
+          symfony/polyfill-php81
+          symfony/polyfill-php82
+          symfony/polyfill-php83
+          symfony/polyfill-php84
+          symfony/polyfill-php85
+
+      - name: "Conditionally require specific versions of the polyfills (PHP 5.4)"
+        if: ${{ matrix.php == '5.4' }}
+        run: >
+          composer require --dev --no-update --no-interaction
+          symfony/polyfill-php72:"1.19"
+          symfony/polyfill-php73:"1.19"
+          symfony/polyfill-php74:"1.19"
+
+      # Remove the PHP >= 8.5 polyfills on PHP 7.1 as the minimum requirement is PHP 7.2.
+      - name: "Conditionally remove some polyfill packages (PHP 7.1)"
+        if: ${{ matrix.php == '7.1' }}
+        run: composer remove --dev symfony/polyfill-php85 --no-update --no-scripts --no-interaction
+
+      - name: "Conditionally require specific versions of the polyfills (PHP 7.1)"
+        if: ${{ matrix.php == '7.1' }}
+        run: >
+          composer require --dev --no-update --no-interaction
+          symfony/polyfill-php73:"1.30"
+          symfony/polyfill-php74:"1.30"
+          symfony/polyfill-php80:"1.30"
+          symfony/polyfill-php81:"1.30"
+          symfony/polyfill-php82:"1.30"
+          symfony/polyfill-php83:"1.30"
+          symfony/polyfill-php84:"1.30"
+
+      - name: Conditionally update PHPCompatibility to develop version
+        if: ${{ matrix.phpcompat != 'stable' }}
+        run: |
+          composer config minimum-stability dev
+          composer require --no-update phpcompatibility/php-compatibility:"${{ matrix.phpcompat }}" --no-interaction
+
+      - name: Install dependencies
+        run: composer install --no-interaction --no-progress
+
+      # Validate the composer.json file.
+      # @link https://getcomposer.org/doc/03-cli.md#validate
+      - name: Validate Composer installation
+        run: composer validate --no-check-all --strict
+
+      # Make sure that known polyfills don't trigger any errors.
+      - name: Test the rulesets
+        run: |
+          vendor/bin/phpcs -ps ./Test/SymfonyPolyfillPHP54Test.php --standard=PHPCompatibilitySymfonyPolyfillPHP54 --exclude=PHPCompatibility.Upgrade.LowPHP --runtime-set testVersion 5.3-
+          vendor/bin/phpcs -ps ./Test/SymfonyPolyfillPHP55Test.php --standard=PHPCompatibilitySymfonyPolyfillPHP55 --exclude=PHPCompatibility.Upgrade.LowPHP --runtime-set testVersion 5.3-
+          vendor/bin/phpcs -ps ./Test/SymfonyPolyfillPHP56Test.php --standard=PHPCompatibilitySymfonyPolyfillPHP56 --exclude=PHPCompatibility.Upgrade.LowPHP --runtime-set testVersion 5.3-
+          vendor/bin/phpcs -ps ./Test/SymfonyPolyfillPHP70Test.php --standard=PHPCompatibilitySymfonyPolyfillPHP70 --exclude=PHPCompatibility.Upgrade.LowPHP --runtime-set testVersion 5.3-
+          vendor/bin/phpcs -ps ./Test/SymfonyPolyfillPHP71Test.php --standard=PHPCompatibilitySymfonyPolyfillPHP71 --exclude=PHPCompatibility.Upgrade.LowPHP --runtime-set testVersion 5.3-
+          vendor/bin/phpcs -ps ./Test/SymfonyPolyfillPHP72Test.php --standard=PHPCompatibilitySymfonyPolyfillPHP72 --exclude=PHPCompatibility.Upgrade.LowPHP --runtime-set testVersion 5.3-
+          vendor/bin/phpcs -ps ./Test/SymfonyPolyfillPHP73Test.php --standard=PHPCompatibilitySymfonyPolyfillPHP73 --exclude=PHPCompatibility.Upgrade.LowPHP --runtime-set testVersion 5.3-
+          vendor/bin/phpcs -ps ./Test/SymfonyPolyfillPHP74Test.php --standard=PHPCompatibilitySymfonyPolyfillPHP74 --exclude=PHPCompatibility.Upgrade.LowPHP --runtime-set testVersion 5.3-
+
+      - name: Test the PHP 8.0-8.4 rulesets
+        # The PHP 8.x polyfills have a minimum PHP requirement of PHP 7.1.
+        if: ${{ matrix.php != '5.4' }}
+        run: |
+          vendor/bin/phpcs -ps ./Test/SymfonyPolyfillPHP80Test.php --standard=PHPCompatibilitySymfonyPolyfillPHP80  --exclude=PHPCompatibility.Upgrade.LowPHP --runtime-set testVersion 7.1-
+          vendor/bin/phpcs -ps ./Test/SymfonyPolyfillPHP81Test.php --standard=PHPCompatibilitySymfonyPolyfillPHP81  --exclude=PHPCompatibility.Upgrade.LowPHP --runtime-set testVersion 7.1-
+          vendor/bin/phpcs -ps ./Test/SymfonyPolyfillPHP82Test.php --standard=PHPCompatibilitySymfonyPolyfillPHP82 --exclude=PHPCompatibility.Upgrade.LowPHP --runtime-set testVersion 7.1-
+          vendor/bin/phpcs -ps ./Test/SymfonyPolyfillPHP83Test.php --standard=PHPCompatibilitySymfonyPolyfillPHP83 --exclude=PHPCompatibility.Upgrade.LowPHP --runtime-set testVersion 7.1-
+          vendor/bin/phpcs -ps ./Test/SymfonyPolyfillPHP84Test.php --standard=PHPCompatibilitySymfonyPolyfillPHP84 --exclude=PHPCompatibility.Upgrade.LowPHP --runtime-set testVersion 7.1-
+
+      - name: Test the PHP 8.5 ruleset
+        # The PHP 8.5 polyfills have a minimum PHP requirement of PHP 7.2.
+        if: ${{ matrix.php == 'latest' }}
+        run: |
+          vendor/bin/phpcs -ps ./Test/SymfonyPolyfillPHP85Test.php --standard=PHPCompatibilitySymfonyPolyfillPHP85 --runtime-set testVersion 7.2-
+
+      # Check that the rulesets don't throw unnecessary errors for the compat libraries themselves.
+      # Note: the polyfills for PHP 5.4 - 7.1 have been decoupled from the monorepo at version 1.19.
+      # The polyfills for PHP 7.2 have been decoupled from the monorepo at version 1.30.
+      # These are no longer updated.
+      - name: Test running against the polyfills - polyfills 5.4-7.1
+        run: |
+          vendor/bin/phpcs -ps ./vendor/symfony/polyfill-php54/ --standard=PHPCompatibilitySymfonyPolyfillPHP54 --exclude=PHPCompatibility.Upgrade.LowPHP --runtime-set testVersion 5.3-
+          vendor/bin/phpcs -ps ./vendor/symfony/polyfill-php55/ --standard=PHPCompatibilitySymfonyPolyfillPHP55 --exclude=PHPCompatibility.Upgrade.LowPHP --runtime-set testVersion 5.3-
+          vendor/bin/phpcs -ps ./vendor/symfony/polyfill-php56/ ./vendor/symfony/polyfill-util/ --standard=PHPCompatibilitySymfonyPolyfillPHP56 --exclude=PHPCompatibility.Upgrade.LowPHP --runtime-set testVersion 5.3- --ignore=*/polyfill-util/TestListener*
+          vendor/bin/phpcs -ps ./vendor/symfony/polyfill-php70/ --standard=PHPCompatibilitySymfonyPolyfillPHP70 --exclude=PHPCompatibility.Upgrade.LowPHP --runtime-set testVersion 5.3-
+          vendor/bin/phpcs -ps ./vendor/symfony/polyfill-php71/ --standard=PHPCompatibilitySymfonyPolyfillPHP71 --exclude=PHPCompatibility.Upgrade.LowPHP --runtime-set testVersion 5.3-
+
+      # The polyfills for PHP 7.2-7.4 are compatible with PHP 5.3+ at version 1.19.
+      - name: "Test running against the polyfills - polyfills 7.2- (v1.19)"
+        if: ${{ matrix.php == '5.4' }}
+        run: |
+          vendor/bin/phpcs -ps ./vendor/symfony/polyfill-php72/ --standard=PHPCompatibilitySymfonyPolyfillPHP72 --exclude=PHPCompatibility.Upgrade.LowPHP --runtime-set testVersion 5.3-
+          vendor/bin/phpcs -ps ./vendor/symfony/polyfill-php73/ --standard=PHPCompatibilitySymfonyPolyfillPHP73 --exclude=PHPCompatibility.Upgrade.LowPHP --runtime-set testVersion 5.3-
+          vendor/bin/phpcs -ps ./vendor/symfony/polyfill-php74/ --standard=PHPCompatibilitySymfonyPolyfillPHP74 --exclude=PHPCompatibility.Upgrade.LowPHP --runtime-set testVersion 5.3-
+
+      # The polyfills for PHP 7.2-8.4 are compatible with PHP 7.1+ at version 1.30.
+      - name: "Test running against the polyfills - polyfills 7.2- (v1.30)"
+        if: ${{ matrix.php == '7.1' }}
+        run: |
+          vendor/bin/phpcs -ps ./vendor/symfony/polyfill-php72/ --standard=PHPCompatibilitySymfonyPolyfillPHP72 --exclude=PHPCompatibility.Upgrade.LowPHP --runtime-set testVersion 7.1-
+          vendor/bin/phpcs -ps ./vendor/symfony/polyfill-php73/ --standard=PHPCompatibilitySymfonyPolyfillPHP73 --exclude=PHPCompatibility.Upgrade.LowPHP --runtime-set testVersion 7.1-
+          vendor/bin/phpcs -ps ./vendor/symfony/polyfill-php74/ --standard=PHPCompatibilitySymfonyPolyfillPHP74 --exclude=PHPCompatibility.Upgrade.LowPHP --runtime-set testVersion 7.1-
+          vendor/bin/phpcs -ps ./vendor/symfony/polyfill-php80/ --standard=PHPCompatibilitySymfonyPolyfillPHP80 --exclude=PHPCompatibility.Upgrade.LowPHP --runtime-set testVersion 7.1-
+          vendor/bin/phpcs -ps ./vendor/symfony/polyfill-php81/ --standard=PHPCompatibilitySymfonyPolyfillPHP81  --exclude=PHPCompatibility.Upgrade.LowPHP --runtime-set testVersion 7.1-
+          vendor/bin/phpcs -ps ./vendor/symfony/polyfill-php82/ --standard=PHPCompatibilitySymfonyPolyfillPHP82 --exclude=PHPCompatibility.Upgrade.LowPHP --runtime-set testVersion 7.1-
+          # The PHP 8.3 polyfills at version 1.30 are not tested against PHP 7.1 as they are not in actual fact
+          # compatible with PHP 7.1. This was correctly detected by PHPCompatibility and would cause this test to fail.
+          vendor/bin/phpcs -ps ./vendor/symfony/polyfill-php84/ --standard=PHPCompatibilitySymfonyPolyfillPHP84 --exclude=PHPCompatibility.Upgrade.LowPHP --runtime-set testVersion 7.1-
+
+      # The polyfills for PHP 7.3 and higher are compatible with PHP 7.2+ at the current version.
+      - name: "Test running against the polyfills - polyfills 7.3- (current)"
+        if: ${{ matrix.php == 'latest' }}
+        run: |
+          vendor/bin/phpcs -ps ./vendor/symfony/polyfill-php73/ --standard=PHPCompatibilitySymfonyPolyfillPHP73 --runtime-set testVersion 7.2-
+          vendor/bin/phpcs -ps ./vendor/symfony/polyfill-php74/ --standard=PHPCompatibilitySymfonyPolyfillPHP74 --runtime-set testVersion 7.2-
+          vendor/bin/phpcs -ps ./vendor/symfony/polyfill-php80/ --standard=PHPCompatibilitySymfonyPolyfillPHP80 --runtime-set testVersion 7.2-
+          vendor/bin/phpcs -ps ./vendor/symfony/polyfill-php81/ --standard=PHPCompatibilitySymfonyPolyfillPHP81 --runtime-set testVersion 7.2-
+          vendor/bin/phpcs -ps ./vendor/symfony/polyfill-php82/ --standard=PHPCompatibilitySymfonyPolyfillPHP82 --runtime-set testVersion 7.2-
+          vendor/bin/phpcs -ps ./vendor/symfony/polyfill-php83/ --standard=PHPCompatibilitySymfonyPolyfillPHP83 --runtime-set testVersion 7.2-
+          vendor/bin/phpcs -ps ./vendor/symfony/polyfill-php84/ --standard=PHPCompatibilitySymfonyPolyfillPHP84 --runtime-set testVersion 7.2-
+          vendor/bin/phpcs -ps ./vendor/symfony/polyfill-php85/ --standard=PHPCompatibilitySymfonyPolyfillPHP85 --runtime-set testVersion 7.2-

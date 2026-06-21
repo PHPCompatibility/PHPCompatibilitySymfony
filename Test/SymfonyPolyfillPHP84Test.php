@@ -30,3 +30,11 @@ $r = new ReflectionConstant(ClassName::CONSTANT_NAME);
 #[Deprecated]
 function foo() {}
 */
+
+$db = new Pdo\Dblib;
+$db = new \Pdo\Firebird;
+function doSomething(
+    Pdo\Mysql $db
+) : Pdo\Odbc {}
+$db = new Pdo\Pgsql;
+$db = new \Pdo\Sqlite;

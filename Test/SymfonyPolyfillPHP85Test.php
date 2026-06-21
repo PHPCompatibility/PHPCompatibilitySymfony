@@ -19,4 +19,5 @@ function dummy() {}
 try {
 } catch (Filter\FilterException | Filter\FilterFailedException $e) {}
 
+locale_is_right_to_left($locale);
 grapheme_levenshtein( $s1, $s2 );

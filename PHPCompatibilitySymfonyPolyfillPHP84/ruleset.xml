@@ -25,7 +25,12 @@
         Detection for the Deprecated attribute is incomplete in PHPCompatibility 10.0.0-alpha1.
         Handling for this should be added once the detection implementation is known.
         -->
-
+        <exclude name="PHPCompatibility.Classes.NewClasses.pdo_dblibFound"/>
+        <exclude name="PHPCompatibility.Classes.NewClasses.pdo_firebirdFound"/>
+        <exclude name="PHPCompatibility.Classes.NewClasses.pdo_mysqlFound"/>
+        <exclude name="PHPCompatibility.Classes.NewClasses.pdo_odbcFound"/>
+        <exclude name="PHPCompatibility.Classes.NewClasses.pdo_pgsqlFound"/>
+        <exclude name="PHPCompatibility.Classes.NewClasses.pdo_sqliteFound"/>
         <exclude name="PHPCompatibility.Classes.NewClasses.reflectionconstantFound"/>
     </rule>
 
@@ -41,6 +46,10 @@
     </rule>
     <rule ref="PHPCompatibility.FunctionUse.NewFunctions.get_debug_typeFound">
         <exclude-pattern>/polyfill-php84/Resources/stubs/ReflectionConstant\.php$</exclude-pattern>
+    </rule>
+
+    <rule ref="PHPCompatibility.Namespaces.ReservedNames.pdoFound">
+        <exclude-pattern>/polyfill-php84/Resources/stubs/Pdo/(Dblib|Firebird|Mysql|Odbc|Pgsql|Sqlite)\.php$</exclude-pattern>
     </rule>
 
     <!-- This is fine as the autoloading for this file should only ever be triggered when on PHP 8.0 or higher. -->

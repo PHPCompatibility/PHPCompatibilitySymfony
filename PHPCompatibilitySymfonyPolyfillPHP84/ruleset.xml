@@ -39,9 +39,11 @@
         <exclude-pattern>/polyfill-php84/Php84\.php$</exclude-pattern>
     </rule>
     <rule ref="PHPCompatibility.Attributes.NewAttributes.PHPNativeAttributeFound">
+        <exclude-pattern>/polyfill-php84/Resources/Deprecated\.php$</exclude-pattern>
         <exclude-pattern>/polyfill-php84/Resources/stubs/Deprecated\.php$</exclude-pattern>
     </rule>
     <rule ref="PHPCompatibility.Classes.NewClasses.attributeFound">
+        <exclude-pattern>/polyfill-php84/Resources/Deprecated\.php$</exclude-pattern>
         <exclude-pattern>/polyfill-php84/Resources/stubs/Deprecated\.php$</exclude-pattern>
     </rule>
     <rule ref="PHPCompatibility.FunctionUse.NewFunctions.get_debug_typeFound">
@@ -54,6 +56,7 @@
 
     <!-- This is fine as the autoloading for this file should only ever be triggered when on PHP 8.0 or higher. -->
     <rule ref="PHPCompatibility.Classes.NewTypedProperties.Found">
+        <exclude-pattern>/polyfill-php84/Resources/Deprecated\.php$</exclude-pattern>
         <exclude-pattern>/polyfill-php84/Resources/stubs/Deprecated\.php$</exclude-pattern>
     </rule>
 
@@ -74,13 +77,12 @@
         <exclude-pattern>/polyfill-php84/Php84\.php$</exclude-pattern>
     </rule>
 
-    <!--
-    Not a false positive, but a bug in the Symfony PHP 8.4 polyfill package.
-    Bug has been reported: https://github.com/symfony/polyfill/issues/551
-    Temporarily silencing the error as this needs to be solved upstream.
-    -->
+    <!-- See: https://github.com/symfony/polyfill/pull/556 -->
     <rule ref="PHPCompatibility.Classes.NewReadonlyProperties.Found">
+        <!-- Polyfill v1.30.0 - v1.33.0 -->
         <exclude-pattern>/polyfill-php84/Resources/stubs/Deprecated\.php$</exclude-pattern>
+        <!-- Polyfill >= v1.34.0 -->
+        <exclude-pattern>/polyfill-php84/Resources/Deprecated\.php$</exclude-pattern>
     </rule>
 
 </ruleset>

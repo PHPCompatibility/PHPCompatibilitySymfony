@@ -76,11 +76,7 @@
         <exclude-pattern>/polyfill-php84/Resources/RoundingMode\.php$</exclude-pattern>
     </rule>
 
-    <!--
-    Not a false positive, but a bug in the Symfony PHP 8.4 polyfill package.
-    Bug has been reported: https://github.com/symfony/polyfill/issues/499#issuecomment-3430423298
-    Temporarily silencing the error as this needs to be solved upstream.
-    -->
+    <!-- Version toggle present. See: https://github.com/symfony/polyfill/pull/501 -->
     <rule ref="PHPCompatibility.Classes.NewClasses.valueerrorFound">
         <exclude-pattern>/polyfill-php84/Php84\.php$</exclude-pattern>
     </rule>

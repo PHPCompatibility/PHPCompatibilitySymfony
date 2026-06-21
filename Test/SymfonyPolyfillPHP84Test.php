@@ -38,3 +38,7 @@ function doSomething(
 ) : Pdo\Odbc {}
 $db = new Pdo\Pgsql;
 $db = new \Pdo\Sqlite;
+
+bcceil($num);
+bcfloor($num);
+bcround($num, 2, RoundingMode::HalfAwayFromZero);

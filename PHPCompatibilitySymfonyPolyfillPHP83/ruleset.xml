@@ -5,6 +5,8 @@
 
     <rule ref="PHPCompatibility">
         <!-- https://github.com/symfony/polyfill-php83/blob/1.x/bootstrap.php -->
+        <!-- https://github.com/symfony/polyfill-php83/blob/1.x/bootstrap72.php -->
+        <!-- https://github.com/symfony/polyfill-php83/blob/1.x/bootstrap81.php -->
         <exclude name="PHPCompatibility.FunctionUse.NewFunctions.json_validateFound"/>
         <exclude name="PHPCompatibility.FunctionUse.NewFunctions.mb_str_padFound"/>
         <exclude name="PHPCompatibility.FunctionUse.NewFunctions.stream_context_set_optionsFound"/>
@@ -77,20 +79,12 @@
         <exclude-pattern>/polyfill-php83/bootstrap81\.php$</exclude-pattern>
     </rule>
 
-    <!--
-    Not a false positive, but a bug in the Symfony PHP 8.3 polyfill package.
-    Bug has been reported: https://github.com/symfony/polyfill/issues/499#issuecomment-3430297592
-    Temporarily silencing the error as this needs to be solved upstream.
-    -->
+    <!-- Version toggle present. See: https://github.com/symfony/polyfill/pull/501 -->
     <rule ref="PHPCompatibility.Classes.NewClasses.valueerrorFound">
         <exclude-pattern>/polyfill-php83/Php83\.php$</exclude-pattern>
     </rule>
 
-    <!--
-    Not a false positive, but a bug in the Symfony PHP 8.3 polyfill package.
-    Bug has been reported: https://github.com/symfony/polyfill/issues/550
-    Temporarily silencing the error as this needs to be solved upstream.
-    -->
+    <!-- See: https://github.com/symfony/polyfill/pull/594 -->
     <rule ref="PHPCompatibility.FunctionUse.NewFunctionParameters.ldap_exop_controlsFound">
         <exclude-pattern>/polyfill-php83/bootstrap\.php$</exclude-pattern>
     </rule>

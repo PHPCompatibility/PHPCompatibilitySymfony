@@ -21,7 +21,7 @@
         <exclude name="PHPCompatibility.Classes.NewClasses.filter_filterfailedexceptionFound"/>
     </rule>
 
-    <!-- Prevent false positives being thrown when run over the code of polyfill-php84 itself. -->
+    <!-- Prevent false positives being thrown when run over the code of polyfill-php85 itself. -->
     <rule ref="PHPCompatibility.Attributes.NewAttributes.PHPNativeAttributeFound">
         <exclude-pattern>/polyfill-php85/Resources/stubs/DelayedTargetValidation\.php$</exclude-pattern>
         <exclude-pattern>/polyfill-php85/Resources/stubs/NoDiscard\.php$</exclude-pattern>

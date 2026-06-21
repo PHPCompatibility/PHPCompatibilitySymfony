@@ -5,6 +5,7 @@
 
     <rule ref="PHPCompatibility">
         <!-- https://github.com/symfony/polyfill-php81/blob/1.x/bootstrap.php -->
+        <exclude name="PHPCompatibility.Constants.NewConstants.curlopt_issuercert_blobFound"/>
         <exclude name="PHPCompatibility.Constants.NewConstants.mysqli_refresh_replicaFound"/>
         <exclude name="PHPCompatibility.Constants.RemovedConstants.mysqli_refresh_replicaDeprecated"/>
         <exclude name="PHPCompatibility.FunctionUse.NewFunctions.array_is_listFound"/>

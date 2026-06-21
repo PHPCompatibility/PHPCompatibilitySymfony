@@ -36,3 +36,5 @@ function hasSensitiveData(
     string $password
 ) {}
 */
+
+echo CURLOPT_SSH_HOST_PUBLIC_KEY_SHA256;

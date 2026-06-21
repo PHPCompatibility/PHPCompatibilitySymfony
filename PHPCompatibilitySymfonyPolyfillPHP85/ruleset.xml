@@ -9,6 +9,7 @@
         <exclude name="PHPCompatibility.FunctionUse.NewFunctions.get_exception_handlerFound"/>
         <exclude name="PHPCompatibility.FunctionUse.NewFunctions.array_firstFound"/>
         <exclude name="PHPCompatibility.FunctionUse.NewFunctions.array_lastFound"/>
+        <exclude name="PHPCompatibility.FunctionUse.NewFunctions.locale_is_right_to_leftFound"/>
         <exclude name="PHPCompatibility.FunctionUse.NewFunctions.grapheme_levenshteinFound"/>
 
         <!-- https://github.com/symfony/polyfill-php85/tree/1.x/Resources/stubs -->

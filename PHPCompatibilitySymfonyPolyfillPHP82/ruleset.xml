@@ -5,6 +5,7 @@
 
     <rule ref="PHPCompatibility">
         <!-- https://github.com/symfony/polyfill-php82/blob/1.x/bootstrap.php -->
+        <exclude name="PHPCompatibility.Constants.NewConstants.curlopt_ssh_host_public_key_sha256Found"/>
         <exclude name="PHPCompatibility.FunctionUse.NewFunctions.odbc_connection_string_is_quotedFound"/>
         <exclude name="PHPCompatibility.FunctionUse.NewFunctions.odbc_connection_string_should_quoteFound"/>
         <exclude name="PHPCompatibility.FunctionUse.NewFunctions.odbc_connection_string_quoteFound"/>

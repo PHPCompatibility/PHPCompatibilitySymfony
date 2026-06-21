@@ -12,3 +12,5 @@ echo MYSQLI_REFRESH_REPLICA;
 class Foo extends ReturnTypeWillChange {}
 
 $file = new CURLStringFile();
+
+echo CURLOPT_ISSUERCERT_BLOB;

@@ -15,3 +15,6 @@ array_last($array);
 #[NoDiscard]
 function dummy() {}
 */
+
+try {
+} catch (Filter\FilterException | Filter\FilterFailedException $e) {}

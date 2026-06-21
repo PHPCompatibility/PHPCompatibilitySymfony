@@ -17,7 +17,10 @@
         <exclude name="PHPCompatibility.FunctionUse.NewFunctions.mb_trimFound"/>
         <exclude name="PHPCompatibility.FunctionUse.NewFunctions.mb_ltrimFound"/>
         <exclude name="PHPCompatibility.FunctionUse.NewFunctions.mb_rtrimFound"/>
+        <exclude name="PHPCompatibility.FunctionUse.NewFunctions.bcceilFound"/>
         <exclude name="PHPCompatibility.FunctionUse.NewFunctions.bcdivmodFound"/>
+        <exclude name="PHPCompatibility.FunctionUse.NewFunctions.bcfloorFound"/>
+        <exclude name="PHPCompatibility.FunctionUse.NewFunctions.bcroundFound"/>
         <exclude name="PHPCompatibility.FunctionUse.NewFunctions.grapheme_str_splitFound"/>
 
         <!-- https://github.com/symfony/polyfill-php84/tree/1.x/Resources/stubs -->
@@ -66,6 +69,11 @@
     </rule>
     <rule ref="PHPCompatibility.FunctionDeclarations.NewReturnTypeDeclarations.falseFound">
         <exclude-pattern>/polyfill-php84/bootstrap82\.php$</exclude-pattern>
+    </rule>
+
+    <!-- This is fine as this file will only be used for PHP 8.1 - 8.3. -->
+    <rule ref="PHPCompatibility.Keywords.NewKeywords.t_enumFound">
+        <exclude-pattern>/polyfill-php84/Resources/RoundingMode\.php$</exclude-pattern>
     </rule>
 
     <!--

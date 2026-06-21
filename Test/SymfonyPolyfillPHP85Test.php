@@ -18,3 +18,5 @@ function dummy() {}
 
 try {
 } catch (Filter\FilterException | Filter\FilterFailedException $e) {}
+
+grapheme_levenshtein( $s1, $s2 );

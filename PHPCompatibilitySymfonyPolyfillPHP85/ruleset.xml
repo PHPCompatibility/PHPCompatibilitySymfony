@@ -9,6 +9,7 @@
         <exclude name="PHPCompatibility.FunctionUse.NewFunctions.get_exception_handlerFound"/>
         <exclude name="PHPCompatibility.FunctionUse.NewFunctions.array_firstFound"/>
         <exclude name="PHPCompatibility.FunctionUse.NewFunctions.array_lastFound"/>
+        <exclude name="PHPCompatibility.FunctionUse.NewFunctions.grapheme_levenshteinFound"/>
 
         <!-- https://github.com/symfony/polyfill-php85/tree/1.x/Resources/stubs -->
         <!--
@@ -36,6 +37,23 @@
     <!-- This is fine as the autoloading for this file should only ever be triggered when on PHP 8.0 or higher. -->
     <rule ref="PHPCompatibility.Classes.NewTypedProperties.Found">
         <exclude-pattern>/polyfill-php85/Resources/stubs/NoDiscard\.php$</exclude-pattern>
+    </rule>
+
+    <!-- These are fine as this file will only be used for PHP >= 8.0. -->
+    <rule ref="PHPCompatibility.FunctionDeclarations.NewReturnTypeDeclarations.UnionTypeFound">
+        <exclude-pattern>/polyfill-php85/bootstrap80\.php$</exclude-pattern>
+    </rule>
+    <rule ref="PHPCompatibility.FunctionDeclarations.NewReturnTypeDeclarations.falseFound">
+        <exclude-pattern>/polyfill-php85/bootstrap80\.php$</exclude-pattern>
+    </rule>
+
+    <!--
+    Not a false positive, but a bug in the Symfony PHP 8.5 polyfill package.
+    Bug has been reported: ...
+    Temporarily silencing the error as this needs to be solved upstream.
+    -->
+    <rule ref="PHPCompatibility.Classes.NewClasses.valueerrorFound">
+        <exclude-pattern>/polyfill-php85/Php85\.php$</exclude-pattern>
     </rule>
 
 </ruleset>

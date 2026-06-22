@@ -4,6 +4,17 @@ All notable changes to this project will be documented in this file.
 
 This projects adheres to [Semantic Versioning](https://semver.org/) and [Keep a CHANGELOG](https://keepachangelog.com/).
 
+## [2.0.0-alpha2] - 2026-06-22
+
+* `PHPCompatibilitySymfonyPolyfillPHP81` ruleset: allow for polyfilled `CURLOPT_ISSUERCERT_BLOB` constant, which was added in `polyfill-php81` version `1.38.1`.
+* `PHPCompatibilitySymfonyPolyfillPHP82` ruleset: allow for polyfilled `CURLOPT_SSH_HOST_PUBLIC_KEY_SHA256` constant, which was added in `polyfill-php82` version `1.38.1`.
+* `PHPCompatibilitySymfonyPolyfillPHP84` ruleset: allow for polyfilled driver specific `PDO` classes, which were added in `polyfill-php84` version `1.34.0`.
+* `PHPCompatibilitySymfonyPolyfillPHP84` ruleset: allow for polyfilled `bcceil()`, `bcfloor()` and `bcround()` functions, which were added in `polyfill-php84` version `1.34.0`.
+* `PHPCompatibilitySymfonyPolyfillPHP84` ruleset: allow for changes in how the `Deprecated` attribute is polyfilled since version `1.34.0`.
+* `PHPCompatibilitySymfonyPolyfillPHP85` ruleset: allow for polyfilled `Filter` exception classes, which were added in `polyfill-php85` version `1.34.0`.
+* `PHPCompatibilitySymfonyPolyfillPHP85` ruleset: allow for polyfilled `grapheme_levenshtein()` and `locale_is_right_to_left()` functions, which were added in `polyfill-php85` version `1.34.0`.
+* General housekeeping and maintenance.
+
 ## [2.0.0-alpha1] - 2025-10-22
 
 * Added new `PHPCompatibilitySymfonyPolyfillPHP81` ruleset.
@@ -89,6 +100,7 @@ Initial release of PHPCompatibilitySymfony containing rulesets covering the `pol
 
 [Composer PHPCS plugin]: https://github.com/PHPCSStandards/composer-installer/
 
+[2.0.0-alpha2]: https://github.com/PHPCompatibility/PHPCompatibilitySymfony/compare/2.0.0-alpha1...2.0.0-alpha2
 [2.0.0-alpha1]: https://github.com/PHPCompatibility/PHPCompatibilitySymfony/compare/1.2.3...2.0.0-alpha1
 [1.2.3]:        https://github.com/PHPCompatibility/PHPCompatibilitySymfony/compare/1.2.2...1.2.3
 [1.2.2]:        https://github.com/PHPCompatibility/PHPCompatibilitySymfony/compare/1.2.1...1.2.2

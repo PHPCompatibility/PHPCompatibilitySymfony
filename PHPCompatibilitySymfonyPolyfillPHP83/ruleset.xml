@@ -15,6 +15,10 @@
         <exclude name="PHPCompatibility.FunctionUse.NewFunctions.ldap_exop_syncFound"/>
         <exclude name="PHPCompatibility.FunctionUse.NewFunctions.ldap_connect_walletFound"/>
 
+        <!-- This is a PHP 8.0 feature, but is polyfilled in the PHP 8.3 package to polyfill certain PHP 8.3 features properly. -->
+        <!-- See: https://github.com/symfony/polyfill/pull/637 -->
+        <exclude name="PHPCompatibility.Classes.NewClasses.valueerrorFound"/>
+
         <!-- https://github.com/symfony/polyfill-php83/tree/1.x/Resources/stubs -->
         <!--
         Detection for the Override attribute is incomplete in PHPCompatibility 10.0.0-alpha1.
@@ -77,11 +81,6 @@
     </rule>
     <rule ref="PHPCompatibility.Attributes.NewAttributes.FoundInline">
         <exclude-pattern>/polyfill-php83/bootstrap81\.php$</exclude-pattern>
-    </rule>
-
-    <!-- Version toggle present. See: https://github.com/symfony/polyfill/pull/501 -->
-    <rule ref="PHPCompatibility.Classes.NewClasses.valueerrorFound">
-        <exclude-pattern>/polyfill-php83/Php83\.php$</exclude-pattern>
     </rule>
 
     <!-- See: https://github.com/symfony/polyfill/pull/594 -->

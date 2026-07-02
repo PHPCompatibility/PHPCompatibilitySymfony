@@ -12,6 +12,10 @@
         <exclude name="PHPCompatibility.FunctionUse.NewFunctions.locale_is_right_to_leftFound"/>
         <exclude name="PHPCompatibility.FunctionUse.NewFunctions.grapheme_levenshteinFound"/>
 
+        <!-- This is a PHP 8.0 feature, but is polyfilled in the PHP 8.3 package to polyfill certain PHP 8.3 features properly. -->
+        <!-- See: https://github.com/symfony/polyfill/pull/637 -->
+        <exclude name="PHPCompatibility.Classes.NewClasses.valueerrorFound"/>
+
         <!-- https://github.com/symfony/polyfill-php85/tree/1.x/Resources/stubs -->
         <!--
         Detection for the DelayedTargetValidation and NoDiscard attributes is incomplete in PHPCompatibility 10.0.0-alpha1.
@@ -46,15 +50,6 @@
     </rule>
     <rule ref="PHPCompatibility.FunctionDeclarations.NewReturnTypeDeclarations.falseFound">
         <exclude-pattern>/polyfill-php85/bootstrap80\.php$</exclude-pattern>
-    </rule>
-
-    <!--
-    Not a false positive, but a bug in the Symfony PHP 8.5 polyfill package.
-    Bug has been reported: ...
-    Temporarily silencing the error as this needs to be solved upstream.
-    -->
-    <rule ref="PHPCompatibility.Classes.NewClasses.valueerrorFound">
-        <exclude-pattern>/polyfill-php85/Php85\.php$</exclude-pattern>
     </rule>
 
 </ruleset>

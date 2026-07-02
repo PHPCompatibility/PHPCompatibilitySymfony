@@ -24,3 +24,5 @@ try {
 } catch (DateObjectError | DateRangeError $e) {
 } catch (SQLite3Exception $e) {
 }
+
+throw new ValueError();

@@ -21,3 +21,5 @@ try {
 
 locale_is_right_to_left($locale);
 grapheme_levenshtein( $s1, $s2 );
+
+throw new ValueError();

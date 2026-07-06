@@ -4,6 +4,13 @@ All notable changes to this project will be documented in this file.
 
 This projects adheres to [Semantic Versioning](https://semver.org/) and [Keep a CHANGELOG](https://keepachangelog.com/).
 
+## [2.0.0-alpha3] - 2026-07-29
+
+* `PHPCompatibilitySymfonyPolyfillPHP74` ruleset: allow for changes related to ValueError handing as per `polyfill-php74` version `1.41.0`.
+* `PHPCompatibilitySymfonyPolyfillPHP83` ruleset: allow for changes related to ValueError handing as per `polyfill-php83` version `1.41.0`.
+* `PHPCompatibilitySymfonyPolyfillPHP85` ruleset: allow for changes related to ValueError handing as per `polyfill-php85` version `1.41.0`.
+* General housekeeping and maintenance.
+
 ## [2.0.0-alpha2] - 2026-06-22
 
 * `PHPCompatibilitySymfonyPolyfillPHP81` ruleset: allow for polyfilled `CURLOPT_ISSUERCERT_BLOB` constant, which was added in `polyfill-php81` version `1.38.1`.
@@ -100,6 +107,7 @@ Initial release of PHPCompatibilitySymfony containing rulesets covering the `pol
 
 [Composer PHPCS plugin]: https://github.com/PHPCSStandards/composer-installer/
 
+[2.0.0-alpha3]: https://github.com/PHPCompatibility/PHPCompatibilitySymfony/compare/2.0.0-alpha2...2.0.0-alpha3
 [2.0.0-alpha2]: https://github.com/PHPCompatibility/PHPCompatibilitySymfony/compare/2.0.0-alpha1...2.0.0-alpha2
 [2.0.0-alpha1]: https://github.com/PHPCompatibility/PHPCompatibilitySymfony/compare/1.2.3...2.0.0-alpha1
 [1.2.3]:        https://github.com/PHPCompatibility/PHPCompatibilitySymfony/compare/1.2.2...1.2.3

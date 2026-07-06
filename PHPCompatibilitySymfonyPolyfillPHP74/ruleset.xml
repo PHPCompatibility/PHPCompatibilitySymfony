@@ -21,4 +21,9 @@
         <exclude-pattern>/polyfill[_-]php74/Php74\.php$</exclude-pattern>
     </rule>
 
+    <!-- Version toggle present. See: https://github.com/symfony/polyfill/pull/640 -->
+    <rule ref="PHPCompatibility.Classes.NewClasses.valueerrorFound">
+        <exclude-pattern>/polyfill[_-]php74/Php74\.php$</exclude-pattern>
+    </rule>
+
 </ruleset>

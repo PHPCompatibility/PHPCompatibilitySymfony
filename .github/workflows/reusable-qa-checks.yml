@@ -91,6 +91,8 @@ jobs:
           php-version: ${{ matrix.php }}
           ini-values: error_reporting=E_ALL, display_errors=On, display_startup_errors=On
           coverage: none
+        env:
+          fail-fast: true
 
         # Remove the PHP 8.x polyfills on PHP < 7 as the minimum requirement is PHP 7.1 and the autoloading
         # of the polyfill bootstrap file via Composer would generate a parse error, blocking the DealerDirect plugin

@@ -85,30 +85,20 @@ jobs:
       matrix:
         # This matrix should reflect the polyfill packages provided in the v1.19 version of the Polyfill package.
         #
-        # Originally the Symfony polyfills supported PHP >= 5.3.3 (tested via PHP 5.4 as setup-php doesn't install PHP 5.3).
+        # Originally the Symfony polyfills supported PHP >= 5.3.3 (tested via PHP 7.2 as that's the minimum
+        # requirement for PHPCompatibility by now).
         # The polyfills need to be installed at v 1.19 (last before the version drop) to test the rulesets in this
         # package are complete and correct.
         # The v1.19 version also includes a polyfill for PHP 8.0 with a minimum PHP requirement of PHP 7.0.
-        php: ['5.4', 'latest']
+        php: ['7.2', 'latest']
         phpcompat: ['stable', 'dev-develop']
-        polyfillphp: ['54', '55', '56', '70', '71', '72', '73', '74']
+        polyfillphp: ['54', '55', '56', '70', '71', '72', '73', '74', '80']
 
         # Testing the rulesets only against PHPCompatibility `dev-develop` with PHP `latest` is sufficient.
         # No need to test PHPCompatibility itself.
         exclude:
-          - php: '5.4'
+          - php: '7.2'
             phpcompat: 'dev-develop'
-
-        include:
-          - php: '7.0'
-            phpcompat: 'stable'
-            polyfillphp: '80'
-          - php: 'latest'
-            phpcompat: 'stable'
-            polyfillphp: '80'
-          - php: 'latest'
-            phpcompat: 'dev-develop'
-            polyfillphp: '80'
 
     continue-on-error: ${{ matrix.phpcompat != 'stable' }}
 
@@ -165,7 +155,6 @@ jobs:
         run: >
           vendor/bin/phpcs -ps ./Test/SymfonyPolyfillPHP${{ matrix.polyfillphp }}Test.php
           --standard=PHPCompatibilitySymfonyPolyfillPHP${{ matrix.polyfillphp }}
-          --exclude=PHPCompatibility.Upgrade.LowPHP
           --runtime-set testVersion ${{ matrix.polyfillphp != '80' && '5.3-' || '7.0-' }}
 
       # Check that the ruleset doesn't throw unnecessary errors for code in the polyfill package itself.
@@ -176,7 +165,6 @@ jobs:
           vendor/bin/phpcs -ps ./vendor/symfony/polyfill-php${{ matrix.polyfillphp }}/
           ${{ matrix.polyfillphp == '56' && './vendor/symfony/polyfill-util/' || '' }}
           --standard=PHPCompatibilitySymfonyPolyfillPHP${{ matrix.polyfillphp }}
-          --exclude=PHPCompatibility.Upgrade.LowPHP
           ${{ matrix.polyfillphp == '56' && '--ignore=*/polyfill-util/TestListener*' || '' }}
           --runtime-set testVersion ${{ matrix.polyfillphp != '80' && '5.3-' || '7.0-' }}
 
@@ -193,14 +181,14 @@ jobs:
         # The next PHP version drop will be in v 1.31.
         # So, the polyfills need to be installed at v 1.30 (last before the version drop) to further test the rulesets
         # in this package are complete and correct.
-        php: ['7.1', 'latest']
+        php: ['7.2', 'latest']
         phpcompat: ['stable', 'dev-develop']
         polyfillphp: ['72', '73', '74', '80', '81', '82', '83', '84']
 
         # Testing the rulesets only against PHPCompatibility `dev-develop` with PHP `latest` is sufficient.
         # No need to test PHPCompatibility itself.
         exclude:
-          - php: '7.1'
+          - php: '7.2'
             phpcompat: 'dev-develop'
 
     continue-on-error: ${{ matrix.phpcompat != 'stable' }}
@@ -262,7 +250,6 @@ jobs:
         run: >
           vendor/bin/phpcs -ps ./Test/SymfonyPolyfillPHP${{ matrix.polyfillphp }}Test.php
           --standard=PHPCompatibilitySymfonyPolyfillPHP${{ matrix.polyfillphp }}
-          --exclude=PHPCompatibility.Upgrade.LowPHP
           --runtime-set testVersion 7.1-
 
       # Check that the ruleset doesn't throw unnecessary errors for code in the polyfill package itself.
@@ -270,11 +257,10 @@ jobs:
         # No need to run this on multiple PHP versions, but we do want to run it against PHPCompat stable + dev.
         # Also: The PHP 8.3 polyfills at version 1.30 are not tested as they are not in actual fact compatible with
         # PHP 7.1. This was correctly detected by PHPCompatibility and would otherwise cause this test to fail.
-        if: ${{ matrix.php != '7.1' && matrix.polyfillphp != '83' }}
+        if: ${{ matrix.php != '7.2' && matrix.polyfillphp != '83' }}
         run: >
           vendor/bin/phpcs -ps ./vendor/symfony/polyfill-php${{ matrix.polyfillphp }}/
           --standard=PHPCompatibilitySymfonyPolyfillPHP${{ matrix.polyfillphp }}
-          --exclude=PHPCompatibility.Upgrade.LowPHP
           --runtime-set testVersion 7.1-
 
   test-polyfills-current:
@@ -334,7 +320,6 @@ jobs:
         run: >
           vendor/bin/phpcs -ps ./Test/SymfonyPolyfillPHP${{ matrix.polyfillphp }}Test.php
           --standard=PHPCompatibilitySymfonyPolyfillPHP${{ matrix.polyfillphp }}
-          --exclude=PHPCompatibility.Upgrade.LowPHP
           --runtime-set testVersion 7.2-
 
       # Check that the ruleset doesn't throw unnecessary errors for code in the polyfill package itself.
@@ -344,5 +329,4 @@ jobs:
         run: >
           vendor/bin/phpcs -ps ./vendor/symfony/polyfill-php${{ matrix.polyfillphp }}/
           --standard=PHPCompatibilitySymfonyPolyfillPHP${{ matrix.polyfillphp }}
-          --exclude=PHPCompatibility.Upgrade.LowPHP
           --runtime-set testVersion 7.2-

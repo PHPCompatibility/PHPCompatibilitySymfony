@@ -7,6 +7,22 @@ on:
 permissions: {}
 
 jobs:
+  pinact:
+    permissions:
+      contents: read # To clone the repo.
+
+    name: 'Run Pinact'
+    uses: PHPCSStandards/.github/.github/workflows/reusable-pinact.yml@559f40470dbce9f7faeab31f82c0be7dfb93228e # v1.3.0
+
+  yamllint:
+    permissions:
+      contents: read # To clone the repo.
+
+    name: 'Lint Yaml'
+    uses: PHPCSStandards/.github/.github/workflows/reusable-yamllint.yml@559f40470dbce9f7faeab31f82c0be7dfb93228e # v1.3.0
+    with:
+      strict: true
+
   xmllint:
     permissions:
       contents: read # To clone the repo.
@@ -113,10 +129,10 @@ jobs:
         env:
           fail-fast: true
 
-        # Remove all polyfill requirements and just focus on the one package per run.
-        # Prevents the autoloading of the polyfill bootstrap file via Composer from generating
-        # a parse error depending on the PHP version (and blocking the DealerDirect plugin
-        # from setting the installed_paths for PHPCS).
+      # Remove all polyfill requirements and just focus on the one package per run.
+      # Prevents the autoloading of the polyfill bootstrap file via Composer from generating
+      # a parse error depending on the PHP version (and blocking the DealerDirect plugin
+      # from setting the installed_paths for PHPCS).
       - name: "Remove all polyfill packages not required at v1.19"
         run: >
           composer remove --dev --no-update --no-scripts --no-interaction
@@ -205,10 +221,10 @@ jobs:
         env:
           fail-fast: true
 
-        # Remove all polyfill requirements and just focus on the one package per run.
-        # Prevents the autoloading of the polyfill bootstrap file via Composer from generating
-        # a parse error depending on the PHP version (and blocking the DealerDirect plugin
-        # from setting the installed_paths for PHPCS).
+      # Remove all polyfill requirements and just focus on the one package per run.
+      # Prevents the autoloading of the polyfill bootstrap file via Composer from generating
+      # a parse error depending on the PHP version (and blocking the DealerDirect plugin
+      # from setting the installed_paths for PHPCS).
       - name: "Remove all polyfill packages not required at v1.30"
         run: >
           composer remove --dev --no-update --no-scripts --no-interaction

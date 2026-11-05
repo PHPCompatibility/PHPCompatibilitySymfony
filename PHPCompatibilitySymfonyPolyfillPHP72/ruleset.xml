@@ -30,4 +30,9 @@
         <exclude-pattern>/polyfill-php72/Php72\.php$</exclude-pattern>
     </rule>
 
+    <!-- Ignore a PHP 8.6 deprecation as the polyfill won't run on that version anyway. -->
+    <rule ref="PHPCompatibility.FunctionUse.RemovedFunctions.spl_object_hashDeprecated">
+        <exclude-pattern>/polyfill-php72/Php72\.php$</exclude-pattern>
+    </rule>
+
 </ruleset>

@@ -4,6 +4,17 @@ All notable changes to this project will be documented in this file.
 
 This projects adheres to [Semantic Versioning](https://semver.org/) and [Keep a CHANGELOG](https://keepachangelog.com/).
 
+## [2.0.0-alpha4] - 2026-11-17
+
+* Added new `PHPCompatibilitySymfonyPolyfillPHP86` ruleset.
+* `PHPCompatibilitySymfonyPolyfillPHP85` ruleset: prevent false positive related to a change in `polyfill-php85` version `1.41.0`.
+* The documentation has been updated to align with the recently released [PHPCompatibility 10.0.0-alpha3] version.
+* Support for PHP < 7.2 has been (soft) dropped.
+* Support for PHP_CodeSniffer 3.x has been (soft) dropped.
+* General housekeeping and maintenance.
+
+[10.0.0-alpha3]: https://github.com/PHPCompatibility/PHPCompatibility/releases/tag/10.0.0-alpha3
+
 ## [2.0.0-alpha3] - 2026-07-29
 
 * `PHPCompatibilitySymfonyPolyfillPHP74` ruleset: allow for changes related to ValueError handing as per `polyfill-php74` version `1.41.0`.
@@ -107,6 +118,7 @@ Initial release of PHPCompatibilitySymfony containing rulesets covering the `pol
 
 [Composer PHPCS plugin]: https://github.com/PHPCSStandards/composer-installer/
 
+[2.0.0-alpha4]: https://github.com/PHPCompatibility/PHPCompatibilitySymfony/compare/2.0.0-alpha3...2.0.0-alpha4
 [2.0.0-alpha3]: https://github.com/PHPCompatibility/PHPCompatibilitySymfony/compare/2.0.0-alpha2...2.0.0-alpha3
 [2.0.0-alpha2]: https://github.com/PHPCompatibility/PHPCompatibilitySymfony/compare/2.0.0-alpha1...2.0.0-alpha2
 [2.0.0-alpha1]: https://github.com/PHPCompatibility/PHPCompatibilitySymfony/compare/1.2.3...2.0.0-alpha1

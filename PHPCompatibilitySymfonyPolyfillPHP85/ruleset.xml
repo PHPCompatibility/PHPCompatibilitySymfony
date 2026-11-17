@@ -39,6 +39,11 @@
         <exclude-pattern>/polyfill-php85/Resources/stubs/Filter/Filter*Exception\.php$</exclude-pattern>
     </rule>
 
+    <!-- This is fine as the function is only used on PHP >= 7.3. -->
+    <rule ref="PHPCompatibility.FunctionUse.NewFunctions.array_key_lastFound">
+        <exclude-pattern>/polyfill-php85/Php85\.php$</exclude-pattern>
+    </rule>
+
     <!-- This is fine as the autoloading for this file should only ever be triggered when on PHP 8.0 or higher. -->
     <rule ref="PHPCompatibility.Classes.NewTypedProperties.Found">
         <exclude-pattern>/polyfill-php85/Resources/stubs/NoDiscard\.php$</exclude-pattern>

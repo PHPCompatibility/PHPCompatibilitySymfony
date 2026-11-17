@@ -73,6 +73,7 @@ jobs:
           diff -B ./PHPCompatibilitySymfonyPolyfillPHP83/ruleset.xml <(xmllint --format "./PHPCompatibilitySymfonyPolyfillPHP83/ruleset.xml")
           diff -B ./PHPCompatibilitySymfonyPolyfillPHP84/ruleset.xml <(xmllint --format "./PHPCompatibilitySymfonyPolyfillPHP84/ruleset.xml")
           diff -B ./PHPCompatibilitySymfonyPolyfillPHP85/ruleset.xml <(xmllint --format "./PHPCompatibilitySymfonyPolyfillPHP85/ruleset.xml")
+          diff -B ./PHPCompatibilitySymfonyPolyfillPHP86/ruleset.xml <(xmllint --format "./PHPCompatibilitySymfonyPolyfillPHP86/ruleset.xml")
 
   test-polyfills-119:
     permissions:
@@ -145,6 +146,7 @@ jobs:
           symfony/polyfill-php83
           symfony/polyfill-php84
           symfony/polyfill-php85
+          symfony/polyfill-php86
 
       - name: "Require specific version of the polyfill under test"
         run: composer require --dev --no-update --no-interaction symfony/polyfill-php${{ matrix.polyfillphp }}:"1.19"
@@ -241,6 +243,7 @@ jobs:
           symfony/polyfill-php83
           symfony/polyfill-php84
           symfony/polyfill-php85
+          symfony/polyfill-php86
 
       - name: "Require specific version of the polyfill under test"
         run: composer require --dev --no-update --no-interaction symfony/polyfill-php${{ matrix.polyfillphp }}:"1.30"
@@ -289,7 +292,7 @@ jobs:
         # in this package are complete and correct.
         php: ['7.2', 'latest']
         phpcompat: ['stable', 'dev-develop']
-        polyfillphp: ['73', '74', '80', '81', '82', '83', '84', '85']
+        polyfillphp: ['73', '74', '80', '81', '82', '83', '84', '85', '86']
 
         # Testing the rulesets only against PHPCompatibility `dev-develop` with PHP `latest` is sufficient.
         # No need to test PHPCompatibility itself.

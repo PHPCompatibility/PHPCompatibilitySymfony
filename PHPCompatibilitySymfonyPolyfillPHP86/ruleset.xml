@@ -1,0 +1,42 @@
+<?xml version="1.0"?>
+<ruleset xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" name="PHPCompatibilitySymfonyPolyfillPHP86" xsi:noNamespaceSchemaLocation="https://schema.phpcodesniffer.com/phpcs.xsd">
+
+    <description>PHPCompatibility ruleset for PHP_CodeSniffer which accounts for polyfills provided by the Symfony PHP 8.6 library.</description>
+
+    <rule ref="PHPCompatibility">
+        <!-- https://github.com/symfony/polyfill-php86/blob/1.x/bootstrap.php -->
+        <exclude name="PHPCompatibility.Constants.NewConstants.array_filter_use_valueFound"/>
+        <exclude name="PHPCompatibility.FunctionUse.NewFunctions.clampFound"/>
+        <exclude name="PHPCompatibility.FunctionUse.NewFunctions.grapheme_strrevFound"/>
+
+        <!-- https://github.com/symfony/polyfill-php86/tree/1.x/Resources/stubs -->
+        <exclude name="PHPCompatibility.Enums.NewEnums.sortdirectionFound"/>
+    </rule>
+
+    <!-- Prevent false positives being thrown when run over the code of polyfill-php85 itself. -->
+
+    <!-- These are fine as this file will only be used for PHP >= 8.0. -->
+    <rule ref="PHPCompatibility.FunctionDeclarations.NewParamTypeDeclarations.mixedFound">
+        <exclude-pattern>/polyfill-php86/bootstrap80\.php$</exclude-pattern>
+    </rule>
+    <rule ref="PHPCompatibility.FunctionDeclarations.NewReturnTypeDeclarations.falseFound">
+        <exclude-pattern>/polyfill-php86/bootstrap80\.php$</exclude-pattern>
+    </rule>
+    <rule ref="PHPCompatibility.FunctionDeclarations.NewReturnTypeDeclarations.mixedFound">
+        <exclude-pattern>/polyfill-php86/bootstrap80\.php$</exclude-pattern>
+    </rule>
+    <rule ref="PHPCompatibility.FunctionDeclarations.NewReturnTypeDeclarations.UnionTypeFound">
+        <exclude-pattern>/polyfill-php86/bootstrap80\.php$</exclude-pattern>
+    </rule>
+
+    <!-- This is fine as the code checks if the ValueError class is available before using it. -->
+    <rule ref="PHPCompatibility.Classes.NewClasses.valueerrorFound">
+        <exclude-pattern>/polyfill-php86/Php86\.php$</exclude-pattern>
+    </rule>
+
+    <!-- This is fine as the enum is conditionally declared for PHP 8.1 or higher. -->
+    <rule ref="PHPCompatibility.Keywords.NewKeywords.t_enumFound">
+        <exclude-pattern>/polyfill-php86/Resources/stubs/SortDirection\.php$</exclude-pattern>
+    </rule>
+
+</ruleset>
